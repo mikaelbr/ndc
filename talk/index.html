@@ -141,10 +141,10 @@
 
           <section data-background="#297f79" data-background-transition="slide">
             <h2 class="stylish-text">Stateless?</h2>
-            <p class="fragment">Write what we want, not how we want it.</p>
+            <p class="fragment">The system rely solely on input, no existing state</p>
 
             <aside class="notes">
-              <p>Write less. Abstract more. Trust the compiler.</p>
+              <p>Like a box</p>
             </aside>
           </section>
 
@@ -152,7 +152,7 @@
             <h2 class="stylish-text">Side-effect free?</h2>
             <div class="fragment">
               <p>We have the notion of pure functions.</p>
-              <p>Given one input, we can expect the same output over <br /> and over — no matter system state.</p>
+              <p>Given the same input, we can expect the same output everytime — no matter the system state.</p>
             </div>
 
             <aside class="notes">
@@ -164,7 +164,7 @@
             <h2 class="stylish-text">Immutable?</h2>
             <div class="fragment">
               <p>Once a value is set, we can not override this value.</p>
-              <p>No passing by reference and altering existing objects.</p>
+              <p>Return new values instead of altering existing ones.</p>
             </div>
 
             <aside class="notes">
