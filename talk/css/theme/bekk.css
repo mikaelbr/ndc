@@ -232,6 +232,8 @@ body:before {
   font-family: "Lobster", sans-serif; }
 .reveal .underline {
   border-bottom: 2px solid #fff; }
+.reveal .bold {
+  font-weight: bold; }
 .reveal .black {
   color: #000; }
 .reveal .bacon-title {
