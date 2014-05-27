@@ -120,8 +120,7 @@
           <img src="img/deer.gif" alt="Fantastic deer" />
         </section>
 
-        <section data-background="#297f79" data-background-transition="slide">
-          <section>
+          <section data-background="#297f79" data-background-transition="slide">
             <h2 class="stylish-text">Some buzzy words</h2>
             <p class="fragment"><span class="underline">First class, higher order</span> functions!</p>
             <p class="fragment">It is <span class="underline">declarative</span>, <span class="underline">stateless</span>, <span class="underline">side-effect free</span>, and <span class="underline">immutable</span>.</p>
@@ -130,7 +129,7 @@
             </aside>
           </section>
 
-          <section>
+          <section data-background="#297f79" data-background-transition="slide">
             <h2 class="stylish-text">Declarative?</h2>
             <p class="fragment">Write what we want, not how we want it.</p>
 
@@ -140,7 +139,7 @@
             </aside>
           </section>
 
-          <section>
+          <section data-background="#297f79" data-background-transition="slide">
             <h2 class="stylish-text">Stateless?</h2>
             <p class="fragment">Write what we want, not how we want it.</p>
 
@@ -149,7 +148,7 @@
             </aside>
           </section>
 
-          <section>
+          <section data-background="#297f79" data-background-transition="slide">
             <h2 class="stylish-text">Side-effect free?</h2>
             <div class="fragment">
               <p>We have the notion of pure functions.</p>
@@ -172,9 +171,7 @@
               <p>No code inside a function can alter the behaviour of code outside that function.</p>
             </aside>
           </section>
-        </section>
 
-        <section>
           <section>
             <h3>With <span class="stylish-text">Functional Programming</span> we write small managable fragments of code.</h3>
             <h3><span class="underline">Highly reusable</span> and testable</h3>
@@ -217,8 +214,6 @@
             </aside>
           </section>
 
-        </section>
-
         <section data-background="#0a3c59" data-background-transition="slide">
           <h2 class="stylish-text">Reactive Programming</h2>
 
@@ -232,155 +227,147 @@
 
         <section data-background="#0a3c59" data-background-transition="slide">
 
-          <section>
-            <h2><span class="stylish-text">Data flow</span> programming</h2>
-            <p>Data <span class="underline">propagates through nodes</span> to keep a system updated</p>
+          <h2><span class="stylish-text">Data flow</span> programming</h2>
+          <p>Data <span class="underline">propagates through nodes</span> to keep a system updated</p>
 
-            <aside class="notes">
-            </aside>
-          </section>
+          <aside class="notes">
+          </aside>
+        </section>
 
-          <section>
-            <h2>Classical analogy: Spreadsheets</h2>
+        <section data-background="#0a3c59" data-background-transition="slide">
+          <h2>Classical analogy: Spreadsheets</h2>
 
-            <aside class="notes">
-              <p>The most used and very explanatory analogy would be spreadsheets.</p>
-              <p>If you have two cells, and a cell with the sum of those, the sum-cell will automaticly update if you change one of the source-cells.</p>
-            </aside>
-          </section>
-
-
-          <section>
-            <div class="dataflow-example">
-              <input type="number" id="a" value="3" class="node node-a"/>
-              <input type="number" id="b" value="2" class="node node-b"/>
-              <input type="number" id="c" class="node node-c"/>
-              <input type="number" id="d" value="2" class="node node-d"/>
-              <input type="text" id="sum" value="0" disabled="" class="node-result"/>
-            </div>
-
-            <script>
-              (function () {
-                var _add = function (a, b) { return a + b; },
-                    _sub = function (a, b) { return a - b; },
-                    _value = function (e) { return e.currentTarget.value; },
-                    getInputAsProperty = function (id) {
-                      var $el = $(id);
-                      return $el.asEventStream("change")
-                                .map(_value)
-                                .toProperty($el.val())
-                                .map(Number);
-                    };
-
-                var $a = getInputAsProperty("#a"),
-                    $b = getInputAsProperty("#b"),
-                    $c = $a.combine($b, _sub),
-                    $d = getInputAsProperty("#d");
-
-                $c.assign($("#c"), "val");
-                $c.combine($d, _add).assign($("#sum"), "val");
-              })();
-            </script>
-
-            <aside class="notes">
-
-            </aside>
-          </section>
-
-          <section>
-            <h3>Many popular frameworks have reactive functionality</h3>
-            <p>Like the one and two-way binding of Angular.js, Ember.js and Knockout</p>
-
-            <aside class="notes">
-              <p></p>
-            </aside>
-          </section>
-
-
+          <aside class="notes">
+            <p>The most used and very explanatory analogy would be spreadsheets.</p>
+            <p>If you have two cells, and a cell with the sum of those, the sum-cell will automaticly update if you change one of the source-cells.</p>
+          </aside>
         </section>
 
 
+        <section data-background="#0a3c59" data-background-transition="slide">
+          <div class="dataflow-example">
+            <input type="number" id="a" value="3" class="node node-a"/>
+            <input type="number" id="b" value="2" class="node node-b"/>
+            <input type="number" id="c" class="node node-c"/>
+            <input type="number" id="d" value="2" class="node node-d"/>
+            <input type="text" id="sum" value="0" disabled="" class="node-result"/>
+          </div>
 
-        <section>
+          <script>
+            (function () {
+              var _add = function (a, b) { return a + b; },
+                  _sub = function (a, b) { return a - b; },
+                  _value = function (e) { return e.currentTarget.value; },
+                  getInputAsProperty = function (id) {
+                    var $el = $(id);
+                    return $el.asEventStream("change")
+                              .map(_value)
+                              .toProperty($el.val())
+                              .map(Number);
+                  };
+
+              var $a = getInputAsProperty("#a"),
+                  $b = getInputAsProperty("#b"),
+                  $c = $a.combine($b, _sub),
+                  $d = getInputAsProperty("#d");
+
+              $c.assign($("#c"), "val");
+              $c.combine($d, _add).assign($("#sum"), "val");
+            })();
+          </script>
+
+          <aside class="notes">
+
+          </aside>
+        </section>
+
+        <section data-background="#0a3c59" data-background-transition="slide">
+          <h3>Many popular frameworks have <span class="stylish-text">reactive functionality</span></h3>
+          <p>Like the <span class="underline">one and two-way binding</span> of Angular.js, Ember.js and Knockout</p>
+
+          <aside class="notes">
+            <p></p>
+          </aside>
+        </section>
+
+        <section data-background="#0a3c59" data-background-transition="slide">
           <h2>Don't fall asleep yet!</h2>
           <img src="img/sizzle.gif" alt="Sizzeling Bacon" />
           <p>The real fun is about to start.</p>
         </section>
 
         <section data-background="#a3354c" data-background-transition="slide">
-          <section>
-            <h2 class="stylish-text">Functional Reactive Programming</h2 >
+          <h2 class="stylish-text">Functional Reactive Programming</h2 >
 
-            <aside class="notes">
-            </aside>
-          </section>
+          <aside class="notes">
+          </aside>
+        </section>
 
-          <section>
-            <h3>Started with <span class="stylish-text">Coal Elliot</span> and <span class="stylish-text">Paul Hydak</span> in <span class="underline">1997</span></h3>
-            <p>Started with a system called
-              <span class="stylish-text">F</span>unctional
-              <span class="stylish-text">R</span>eactive
-              <span class="stylish-text">AN</span>imations, or <span class="stylish-text">FRAN</span> for short.</p>
+        <section data-background="#a3354c" data-background-transition="slide">
+          <h3>Started with <span class="stylish-text">Coal Elliot</span> and <span class="stylish-text">Paul Hydak</span> in <span class="underline">1997</span></h3>
+          <p>Started with a system called
+            <span class="stylish-text">F</span>unctional
+            <span class="stylish-text">R</span>eactive
+            <span class="stylish-text">AN</span>imations, or <span class="stylish-text">FRAN</span> for short.</p>
 
-            <aside class="notes">
-            </aside>
-          </section>
+          <aside class="notes">
+          </aside>
+        </section>
 
-          <section>
-            <h3>Allows us to combine the magic from both the functional and the reactive paradigms.</h3>
+        <section data-background="#a3354c" data-background-transition="slide">
+          <h3>Allows us to combine the magic from both the <span class="stylish-text">functional</span> and the <span class="stylish-text">reactive</span> paradigms.</h3>
 
-            <aside class="notes">
-            </aside>
-          </section>
+          <aside class="notes">
+          </aside>
+        </section>
 
 
-          <section>
-            <h2>Operate with two general concepts</h2>
-            <ol>
-                <li class="fragment"><h3 class="stylish-text">Behaviours</h3></li>
-                <li class="fragment"><h3 class="stylish-text">Events</h3></li>
-            </ol>
-            <aside class="notes">
-            </aside>
-          </section>
+        <section data-background="#a3354c" data-background-transition="slide">
+          <h2>Operate with two general concepts</h2>
+          <ol>
+              <li class="fragment"><h3 class="stylish-text">Behaviours</h3></li>
+              <li class="fragment"><h3 class="stylish-text">Events</h3></li>
+          </ol>
+          <aside class="notes">
+          </aside>
+        </section>
 
-          <section>
-            <h2 class="stylish-text">Behaviours</h2>
-            <p>Semantics: <code>f(t) -> v</code></p>
+        <section data-background="#a3354c" data-background-transition="slide">
+          <h2 class="stylish-text">Behaviours</h2>
+          <p>Semantics: <code>f(t) -> v</code></p>
 
-            <aside class="notes">
-            </aside>
-          </section>
+          <aside class="notes">
+          </aside>
+        </section>
 
-          <section>
-            <h2 class="stylish-text">Events</h2>
-            <p>Semantics: <code>[(t, v)]</code></p>
+        <section data-background="#a3354c" data-background-transition="slide">
+          <h2 class="stylish-text">Events</h2>
+          <p>Semantics: <code>[(t, v)]</code></p>
 
-            <aside class="notes">
-            </aside>
-          </section>
+          <aside class="notes">
+          </aside>
+        </section>
 
-          <section>
-            <h2>In FRP we treat events and behaviours as sequences</h2>
-            <p>This allows make use of the power of functors and combinators.</p>
+        <section data-background="#a3354c" data-background-transition="slide">
+          <h2>In FRP we treat events and <span class="stylish-text">behaviours</span> as <span class="underline">sequences</span></h2>
+          <p>This allows make use of the power of functors and combinators.</p>
 
-            <aside class="notes">
-            </aside>
-          </section>
+          <aside class="notes">
+          </aside>
+        </section>
 
-          <section>
-            <h2>Why FRP?</h2>
-            <ol>
-                <li>Functional programming in a naturally <br />stateful enviroment (and all good that brings)</li>
-                <li>Fragmented, DRY code</li>
-                <li>Reactive data types abstracting state</li>
-                <li>GUI without side-effects</li>
-                <li>Is really good for handling UI and multiple inputs/outputs</li>
-            </ol>
+        <section data-background="#a3354c" data-background-transition="slide">
+          <h2>Why FRP?</h2>
+          <ol>
+              <li>Functional programming in a naturally <br />stateful enviroment (and all the good that brings)</li>
+              <li>Fragmented, DRY code</li>
+              <li>Reactive data types abstracting state</li>
+              <li>GUI without side-effects</li>
+              <li>Is really good for handling UI and multiple inputs/outputs</li>
+          </ol>
 
-            <aside class="notes">
-            </aside>
-          </section>
+          <aside class="notes">
+          </aside>
         </section>
 
         <section data-background-transition="slide">
@@ -391,66 +378,65 @@
         </section>
 
         <section>
-          <section>
-            <h3>Remember <span class="stylish-text">this</span>?</h3>
-            <div class="dataflow-example">
-              <input type="number" id="a2" value="3" class="node node-a"/>
-              <input type="number" id="b2" value="2" class="node node-b"/>
-              <input type="number" id="c2" class="node node-c"/>
-              <input type="number" id="d2" value="2" class="node node-d"/>
-              <input type="text" id="sum2" value="0" disabled="" class="node-result"/>
-            </div>
+          <h3>Remember <span class="stylish-text">this</span>?</h3>
+          <div class="dataflow-example">
+            <input type="number" id="a2" value="3" class="node node-a"/>
+            <input type="number" id="b2" value="2" class="node node-b"/>
+            <input type="number" id="c2" class="node node-c"/>
+            <input type="number" id="d2" value="2" class="node node-d"/>
+            <input type="text" id="sum2" value="0" disabled="" class="node-result"/>
+          </div>
 
-            <script>
-              (function () {
-                var _add = function (a, b) { return a + b; },
-                    _sub = function (a, b) { return a - b; },
-                    getInputAsProperty = function (id) {
-                      var $el = $(id);
-                      return $el.asEventStream("change")
-                                .map(".currentTarget.value")
-                                .toProperty($el.val())
-                                .map(Number);
-                    };
+          <script>
+            (function () {
+              var _add = function (a, b) { return a + b; },
+                  _sub = function (a, b) { return a - b; },
+                  getInputAsProperty = function (id) {
+                    var $el = $(id);
+                    return $el.asEventStream("change")
+                              .map(".currentTarget.value")
+                              .toProperty($el.val())
+                              .map(Number);
+                  };
 
-                var $a = getInputAsProperty("#a2"),
-                    $b = getInputAsProperty("#b2"),
-                    $c = $a.combine($b, _sub),
-                    $d = getInputAsProperty("#d2");
+              var $a = getInputAsProperty("#a2"),
+                  $b = getInputAsProperty("#b2"),
+                  $c = $a.combine($b, _sub),
+                  $d = getInputAsProperty("#d2");
 
-                $c.assign($("#c2"), "val");
-                $c.combine($d, _add).assign($("#sum2"), "val");
-              })();
-            </script>
-          </section>
+              $c.assign($("#c2"), "val");
+              $c.combine($d, _add).assign($("#sum2"), "val");
+            })();
+          </script>
+        </section>
 
-          <section>
-            <h3>A lot of <span class="underline">spaggeti</span> code, right?</h3>
-            <h2 class="stylish-text fragment">Nope</h2>
-            <p class="fragment">Let's see some code</p>
-          </section>
+        <section>
+          <h3>A lot of <span class="underline">spaghetti</span> code, right?</h3>
+          <h2 class="stylish-text fragment">Nope</h2>
+          <p class="fragment">Let's see some code</p>
+        </section>
 
-          <section>
-            <div class="code">
+        <section>
+          <div class="code">
 <pre class="fragment" data-fragment-index="1"><code class="javascript">function inputAsBehaviour(id) {</code></pre>
-            <pre>
+          <pre>
 <code class="javascript">  var $el = $(id);
   var behaviour = $el.asEventStream("change")
-            .map(".currentTarget.value")
-            .toProperty($el.val())
-            .map(Number);
+          .map(".currentTarget.value")
+          .toProperty($el.val())
+          .map(Number);
 </code></pre>
 <pre class="fragment" data-fragment-index="1"><code class="javascript">  return behaviour;
 }</code></pre>
-            </div>
-          </section>
+          </div>
+        </section>
 
-          <section data-background="img/kevin_zoom.gif" data-background-transition="slide">
-          </section>
+        <section data-background="img/kevin_zoom.gif" data-background-transition="slide">
+        </section>
 
-          <section>
-            <div class="code">
-            <pre>
+        <section>
+          <div class="code">
+          <pre>
 <code class="javascript">var $a = inputAsBehaviour("#a"),
     $b = inputAsBehaviour("#b"),</code></pre>
 <pre class="fragment" data-fragment-index="1"><code class="javascript">    $d = inputAsBehaviour("#d"),
@@ -458,18 +444,16 @@
 </code></pre>
 <pre class="fragment" data-fragment-index="2"><code class="javascript">$c.assign($("#c"), "val");
 $c.combine($d, _add)
-  .assign($("#sum"), "val");
+.assign($("#sum"), "val");
 </code></pre>
-            </div>
-          </section>
+          </div>
+        </section>
 
-          <section data-background="img/kevin_yeah.jpg" data-background-transition="slide">
-          </section>
+        <section data-background="img/kevin_yeah.jpg" data-background-transition="slide">
+        </section>
 
-          <section>
-            <h3>We've just experienced <span class="stylish-text">Bacon.js</span></h3>
-          </section>
-
+        <section>
+          <h3>We've just experienced <span class="stylish-text">Bacon.js</span></h3>
         </section>
 
         <section data-background="img/francis.jpg" data-background-transition="slide">
@@ -482,51 +466,48 @@ $c.combine($d, _add)
         </section>
 
         <section>
-          <section>
-            <h3>In Bacon.js we call a <span class="underline">Behaviour</span> a <span class="stylish-text">Property</span></h3>
-            <h3>and <span class="underline">Events</span> are called <span class="stylish-text">EventStreams</span></h3>
-          </section>
+          <h3>In Bacon.js we call a <span class="underline">Behaviour</span> a <span class="stylish-text">Property</span></h3>
+          <h3>and <span class="underline">Events</span> are called <span class="stylish-text">EventStreams</span></h3>
+        </section>
 
-          <section>
-            <h3>The semantics of Bacon.js is
-              <span class="underline">true FRP</span>, as we
-              have both <span class="stylish-text">behaviours</span> and <span class="stylish-text">events</span></h3>
+        <section>
+          <h3>The semantics of Bacon.js is
+            <span class="underline">true FRP</span>, as we
+            have both <span class="stylish-text">behaviours</span> and <span class="stylish-text">events</span></h3>
 
-            <aside class="notes">
-              <p>This is as apposed to for example Reactive Extensions, where we only have the concept of observables.</p>
-            </aside>
-          </section>
+          <aside class="notes">
+            <p>This is as apposed to for example Reactive Extensions, where we only have the concept of observables.</p>
+          </aside>
+        </section>
 
-          <section>
-            <h3>As we've seen, we encapsulate data sources to make them reactive</h3>
-            <ul>
-              <li><code>fromEventTarget</code></li>
-              <li><code>fromPromise</code></li>
-              <li><code>fromCallback</code></li>
-              <li>... and more</li>
-            </ul>
-          </section>
+        <section>
+          <h3>As we've seen, we encapsulate data sources to make them reactive</h3>
+          <ul>
+            <li><code>fromEventTarget</code></li>
+            <li><code>fromPromise</code></li>
+            <li><code>fromCallback</code></li>
+            <li>... and more</li>
+          </ul>
+        </section>
 
-          <section>
-            <h3>Allows us to do</h3>
-            <div class="code">
-            <pre><code class="javascript">Bacon.sequentially(100, [110, 100, 99])
+        <section>
+          <h3>Allows us to do</h3>
+          <div class="code">
+          <pre><code class="javascript">Bacon.sequentially(100, [110, 100, 99])
   .map(String.fromCharCode)
   .map(".toUpperCase")
   .fold("", ".concat")
   .log("Value: ");
 // => Value: NDC
 // (after 300 ms)</code></pre></div>
-          </section>
+        </section>
 
-          <section>
-            <h3>Or simply</h3>
-            <div class="code">
-            <pre><code class="javascript">Bacon.fromEventTarget(el, "change")
-  .map(".currentTarget.checked")
-  .toProperty(el.checked);</code></pre></div>
-          </section>
-
+        <section>
+          <h3>Or simply</h3>
+          <div class="code">
+          <pre><code class="javascript">Bacon.fromEventTarget(el, "change")
+.map(".currentTarget.checked")
+.toProperty(el.checked);</code></pre></div>
         </section>
 
         <section data-background="img/kevin_cool.jpg" data-background-transition="slide">
@@ -536,19 +517,18 @@ $c.combine($d, _add)
         </section>
 
         <section data-background="rgba( 22, 152, 213, 0.7 )" data-background-transition="slide">
-          <section>
-            <h2>So… <span class="stylish-text">When</span> and <span class="stylish-text">Where</span>?</h2>
-          </section>
+          <h2>So… <span class="stylish-text">When</span> and <span class="stylish-text">Where</span>?</h2>
+        </section>
 
-          <section>
-            <h2>Easily <span class="underline">combine</span> with frameworks or libraries.</h2>
-            <p>Can use as a part of an application</p>
-          </section>
+        <section data-background="rgba( 22, 152, 213, 0.7 )" data-background-transition="slide">
+          <h2><span class="underline">Easily combine</span> with frameworks or libraries.</h2>
+          <p>Can use as a part of an application</p>
+        </section>
 
-          <section>
-            <h2>Example: React</h2>
-            <div class="code">
-            <pre><code data-trim="" class="javascript">
+        <section data-background="rgba( 22, 152, 213, 0.7 )" data-background-transition="slide">
+          <h2>Example: React</h2>
+          <div class="code">
+          <pre><code data-trim="" class="javascript">
 var textStream = new Bacon.Bus;
 var labelStream = textStream.map(reverseText);
 React.renderComponent(React.DOM.div(null,
@@ -556,12 +536,12 @@ React.renderComponent(React.DOM.div(null,
   Label({ stream: labelStream })
 ), document.body);</code></pre></div>
 <p><small><em>*</em> See full example by Josh Bassett <a href="http://joshbassett.info/2014/reactive-uis-with-react-and-bacon/">http://joshbassett.info/</a></small></p>
-          </section>
+        </section>
 
-          <section>
-            <h2>Example: Backbone</h2>
-            <div class="code">
-            <pre><code data-trim="" class="javascript">
+        <section data-background="rgba( 22, 152, 213, 0.7 )" data-background-transition="slide">
+          <h2>Example: Backbone</h2>
+          <div class="code">
+          <pre><code data-trim="" class="javascript">
 var newTodo = this.$('#new-todo')
   .asEventStream('click');
 Bacon.combineTemplate({ title: titleProperty,
@@ -571,13 +551,58 @@ Bacon.combineTemplate({ title: titleProperty,
 
 newTodo.onValue(this.resetForm):
 </code></pre></div>
-          </section>
-
-          <section>
-            <h3><span class="stylish-text">Functional Reactive Programming</span> should be used when you have a <span class="underline">lot of handling of events and state</span>.</h3>
-          </section>
         </section>
 
+        <section data-background="rgba( 22, 152, 213, 0.7 )" data-background-transition="slide">
+          <h3><span class="stylish-text">Functional Reactive Programming</span> should be used when you have a <span class="underline">lot of handling of events and state</span>.</h3>
+        </section>
+
+        <section data-background="rgba( 22, 152, 213, 0.7 )" data-background-transition="slide">
+          <h2>Can be hard to <span class="underline">wrap your head around</span> if you have no experience with <span class="stylish-text">functional programming</span></h2>
+        </section>
+
+        <section data-background="img/kevin_what.jpg" data-background-transition="slide">
+          <aside class="notes">
+            <p>Like with this guy.</p>
+          </aside>
+        </section>
+
+        <section data-background="#a3354c" data-background-transition="slide">
+          <h1>Let's get hacking on my heart rate</h1>
+        </section>
+
+        <section data-background="img/kevin_love.png" data-background-transition="slide">
+          <aside class="notes">
+            <p>Pretty fun, right?</p>
+          </aside>
+        </section>
+
+        <section>
+          <h2>Some key take aways</h2>
+          <ol>
+            <li class="fragment"><span class="stylish-text">FRP</span> gives us functional programming in a stateful enviroment</li>
+            <li class="fragment">Let's us build up a complex application <span class="underline">fragment by fragment</span>.</li>
+            <li class="fragment"><span class="stylish-text">Immutable</span> values for easy re-use</li>
+            <li class="fragment"><span class="underline">Avoids</span> spaghetti</li>
+          </ol>
+        </section>
+
+        <section data-background="img/bacon_weaves.jpg" data-background-transition="slide">
+          <h2>... and of course <span class="stylish-text">Bacon</span></h2>
+        </section>
+
+        <section data-background="img/kevin_sweat.jpg" data-background-transition="slide">
+          <div class="fragment">
+            <h1>Questions?</h1>
+            <h2><i class="fa fa-twitter"></i> <a href="http://twitter.com/mikaelbrevik">@mikaelbrevik</a></h2>
+          </div>
+
+          <aside class="notes">
+            <p>And some more Bacon.</p>
+            <p>I'm gonna go calm down and ease my heart rate now.</p>
+            <p>But first, any questions?</p>
+          </aside>
+        </section>
       </div>
     </div>
 
