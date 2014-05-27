@@ -1,0 +1,198 @@
+/**
+ * BEKK Consulting AS theme for reveal.js.
+ *
+ */
+
+
+// Default mixins and settings -----------------
+@import "../template/mixins";
+@import "../template/settings";
+// ---------------------------------------------
+
+
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700,400italic,700italic);
+@import url(http://fonts.googleapis.com/css?family=Lobster);
+
+// Override theme settings (see ../template/settings.scss)
+$backgroundColor: #1b1b1b;
+$alternativeColor: #297f79;
+
+$mainFont: 'Open Sans', sans-serif;
+$stylishFont: 'Lobster', sans-serif;
+$linkColor: #fd5157;
+$linkColorHover: lighten( $linkColor, 20% );
+$headingFont: Georgia, sans-serif;
+$headingTextShadow: none;
+$headingLetterSpacing: 0em;
+$headingTextTransform: none;
+$headingLineHeight: 1.2em;
+$selectionBackgroundColor: #fd5157;
+$mainFontSize: 30px;
+
+
+// Theme template ------------------------------
+@import "../template/theme";
+// ---------------------------------------------
+
+// Logo in bottom left corner.
+body:before {
+  position: absolute;
+  content: "";
+  display: block;
+  background: url('http://open.bekk.no/Content/Images/BEKK_logo.svgz') left top no-repeat;
+  width: 120px;
+  height: 25px;
+  bottom: 30px;
+  left: 20px;
+  background-size: 120px 25px;
+  z-index: 9999;
+}
+
+.reveal > code,
+.reveal p code {
+  color: #000000;
+  background: #fdf6e3;
+  border-radius: 2px;
+  padding: 0px 5px;
+  display: inline-block;
+}
+
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  outline: 0;
+}
+
+/* Data flow example */
+
+.slides .dataflow-example {
+    background: url("/img/data_flow.svg") left top no-repeat;
+    position: relative;
+    width: 900px;
+    height: 364px;
+
+    margin: 0 auto;
+}
+
+.node,
+.node-result {
+    border: 0;
+    background: none;
+    color: #fff;
+    position: absolute;
+
+    font-size: 2em;
+    width: 100px;
+    outline: 0;
+
+    text-align: center;
+}
+
+.node-a {
+    top: 50px;
+    left: 25px;
+}
+
+.node-b {
+    bottom: 36px;
+    left: 25px;
+}
+
+.node-d {
+    top: 30px;
+    left: 385px;
+}
+
+.node-c {
+    bottom: 96px;
+    left: 385px;
+}
+
+.node-result {
+    top: calc(50% - 40px);
+    right: 15px;
+}
+
+.about-me {
+  position: relative;
+
+  .avatar {
+    background: #ddd;
+    width: 300px;
+    height: 300px;
+    border-radius: 9999px;
+    overflow: hidden;
+
+    border: 0.5em solid $alternativeColor;
+
+    margin: 1.5em auto;
+  }
+
+  .avatar img {
+    margin: 0;
+    max-height: inherit;
+    max-width: 100%;
+    width: auto\9;
+    height: auto;
+    border: 0;
+    display: inline-block;
+    -ms-interpolation-mode: bicubic;
+
+    filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale"); /* Firefox 10+, Firefox on Android */
+    filter: gray; /* IE6-9 */
+    -webkit-filter: grayscale(100%); /* Chrome 19+, Safari 6+, Safari 6+ iOS */
+
+    margin-top: -25px;
+  }
+
+  p {
+    font-size: 1.2em;
+  }
+}
+
+.reveal {
+  .stylish-text {
+    font-family: $stylishFont;
+  }
+
+  .underline {
+    border-bottom: 2px solid #fff;
+  }
+
+  .black {
+    color: #000;
+  }
+
+  .bacon-title {
+    text-align: right;
+  }
+
+  .pulse {
+    h1 {
+      font-size: 8em;
+
+      small {
+        font-size: 0.4em;
+        vertical-align: baseline;
+        color: $alternativeColor;
+      }
+    }
+  }
+
+  i.fa {
+    font-family: 'FontAwesome';
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1;
+  }
+  section .no-style {
+    border: 0;
+    background: inherit;
+  }
+
+  pre code {
+    font-size: 2em;
+    line-height: 1.4em;
+  }
+}

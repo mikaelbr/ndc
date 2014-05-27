@@ -1,0 +1,616 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+
+    <title>Functional Reactive Programming</title>
+
+    <meta name="description" content="Foredrag om bruk av streams i javascript">
+    <meta name="author" content="Mikael Brevik">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="css/reveal.min.css">
+    <link rel="stylesheet" href="css/theme/bekk.css" id="theme">
+
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/monokai-sublime.css">
+
+    <!-- If the query includes 'print-pdf', use the PDF print sheet -->
+    <script>
+      document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+    </script>
+
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+
+    <script type="text/javascript" src="lib/js/jquery.js"></script>
+    <script type="text/javascript" src="lib/js/bacon.js"></script>
+
+  </head>
+
+  <body>
+
+    <div class="reveal">
+      <div class="slides">
+
+        <section>
+          <h2>Functional Reactive Programming</h2>
+        </section>
+
+        <section data-background="#0a3c59" data-background-transition="slide">
+          <h2 class="stylish-text">... and Bacon!</h2>
+        </section>
+
+        <section class="about-me">
+          <h2 class="stylish-text">Mikael Brevik</h2>
+
+          <div class="avatar">
+            <img src="img/mikaelbrevik.jpeg" alt="Mikael Brevik" />
+          </div>
+
+          <p>Works at Bekk Consulting</p>
+          <p><i class="fa fa-github"></i> <a href="https://github.com/mikaelbr">@mikaelbr</a></p>
+          <p><i class="fa fa-twitter"></i> <a href="http://twitter.com/mikaelbrevik">@mikaelbrevik</a></p>
+          <p>Uses Google a lot</p>
+        </section>
+
+        <section data-background="/img/bacon.png" data-background-transition="slide">
+          <h1>I Love Bacon<em>*</em></h1>
+
+          <p class="foot-note"><em>*</em>Both the meat and the functional reactive library</p>
+        </section>
+
+        <section class="big-me" data-background-transition="zoom" data-background="img/mikaelbrevik.jpeg">
+          <h1 class="black">Let's get personal</h1>
+
+          <aside class="notes">
+            <p>This is my first time at NDC, so let's get to know eachother some. Or at least, you get to know me and my internals so to speak.</p>
+          </aside>
+        </section>
+
+        <section class="pulse" data-state="pulse" data-background="#a3354c" data-background-transition="slide">
+          <h3>This is my heart rate right now:</h3>
+          <h1>120<small>bpm</small></h1>
+
+          <aside class="notes">
+            <p>As you probably can tell, all that Bacon isn't good for me. I must admit, me being horrendously nervous, might affect my heart rate as well.</p>
+            <p>Don't worry. I'm a professional. But, if my heart rate peaks at 180, it might be time to call an ambulance.</p>
+            <p>Later in this talk we will see how functional reactive programming can work by hacking on my heart rate.</p>
+          </aside>
+        </section>
+
+        <section class="pulse" data-state="pulse-activate-1">
+          <h3>During this presentation you will see my heart rate at the upper left in these slides.</h3>
+          <h1 class="fragment">120<small>bpm</small></h1>
+        </section>
+
+        <section>
+          <h3>Agenda</h3>
+          <ol>
+            <li class="fragment">Functional Programming</li>
+            <li class="fragment">Reactive Programming</li>
+            <li class="fragment">Functional Reactive Programming (and Bacon.js)</li>
+            <li class="fragment">When and Where?</li>
+            <li class="fragment">Code for me!</li>
+          </ol>
+        </section>
+
+        <section data-background="#297f79" data-background-transition="slide">
+          <h2 class="stylish-text">Functional Programming</h2>
+          <div class="fragment">
+            <p>A programming paradigm with <span class="underline">functions</span> as a central concept.</p>
+            <p>Has it's roots with <span class="underline">lambda calculus</span>.</p>
+          </div>
+
+          <aside class="notes">
+            <p>There are some good talks here covering Functional Programming, and most of them probably do a better job explaining it than me, but let's do a short recap.</p>
+            <p>Lambda calculus: Operating with name less mathematical expressions. Or we will call them anonymous functions. Often heavy use of recursion</p>
+          </aside>
+        </section>
+
+        <section data-background="#297f79" data-background-transition="slide">
+          <img src="/img/deer.gif" alt="Fantastic deer" />
+        </section>
+
+        <section data-background="#297f79" data-background-transition="slide">
+          <section>
+            <h2 class="stylish-text">Some buzzy words</h2>
+            <p class="fragment"><span class="underline">First class, higher order</span> functions!</p>
+            <p class="fragment">It is <span class="underline">declarative</span>, <span class="underline">stateless</span>, <span class="underline">side-effect free</span>, and <span class="underline">immutable</span>.</p>
+
+            <aside class="notes">
+            </aside>
+          </section>
+
+          <section>
+            <h2 class="stylish-text">Declarative?</h2>
+            <p class="fragment">Write what we want, not how we want it.</p>
+
+            <aside class="notes">
+              <p>Write less. Abstract more. Trust the compiler.</p>
+              <p>The antonym would be imperative programming, where we detail orient everything. If's and else's, for loops and so on.</p>
+            </aside>
+          </section>
+
+          <section>
+            <h2 class="stylish-text">Stateless?</h2>
+            <p class="fragment">Write what we want, not how we want it.</p>
+
+            <aside class="notes">
+              <p>Write less. Abstract more. Trust the compiler.</p>
+            </aside>
+          </section>
+
+          <section>
+            <h2 class="stylish-text">Side-effect free?</h2>
+            <div class="fragment">
+              <p>We have the notion of pure functions.</p>
+              <p>Given one input, we can expect the same output over <br /> and over — no matter system state.</p>
+            </div>
+
+            <aside class="notes">
+              <p>No code inside a function can alter the behaviour of code outside that function.</p>
+            </aside>
+          </section>
+
+          <section data-background="#297f79" data-background-transition="slide">
+            <h2 class="stylish-text">Immutable?</h2>
+            <div class="fragment">
+              <p>Once a value is set, we can not override this value.</p>
+              <p>No passing by reference and altering existing objects.</p>
+            </div>
+
+            <aside class="notes">
+              <p>No code inside a function can alter the behaviour of code outside that function.</p>
+            </aside>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h3>With <span class="stylish-text">Functional Programming</span> we write small managable fragments of code.</h3>
+            <h3><span class="underline">Highly reusable</span> and testable</h3>
+
+            <aside class="notes">
+            </aside>
+          </section>
+
+          <section>
+            <h3>Achived with using functors and combinators</h3>
+
+            <aside class="notes">
+              <p>Information about functors and combinators</p>
+            </aside>
+          </section>
+
+          <section>
+<pre><code class="javascript">[1, 2, 3].map(function (i) {
+  return i * 2;
+});
+//= [2, 4, 6]
+</code></pre>
+
+            <aside class="notes">
+              <p>Information about functors and combinators</p>
+            </aside>
+          </section>
+          <section>
+            <div class="code">
+            <pre>
+<code class="javascript">[1, 2, 3].reduce(function (acc, i) {
+  return acc + i;
+});
+//= 6
+</code></pre>
+            </div>
+
+            <aside class="notes">
+              <p>Information about functors and combinators</p>
+            </aside>
+          </section>
+
+        </section>
+
+        <section data-background="#0a3c59" data-background-transition="slide">
+          <h2 class="stylish-text">Reactive Programming</h2>
+
+          <aside class="notes">
+          </aside>
+        </section>
+
+        <section data-background="#0a3c59" data-background-transition="slide">
+          <img src="/img/baby.gif" alt="Reaction of baby" />
+        </section>
+
+        <section data-background="#0a3c59" data-background-transition="slide">
+
+          <section>
+            <h2><span class="stylish-text">Data flow</span> programming</h2>
+            <p>Data <span class="underline">propagates through nodes</span> to keep a system updated</p>
+
+            <aside class="notes">
+            </aside>
+          </section>
+
+          <section>
+            <h2>Classical analogy: Spreadsheets</h2>
+
+            <aside class="notes">
+              <p>The most used and very explanatory analogy would be spreadsheets.</p>
+              <p>If you have two cells, and a cell with the sum of those, the sum-cell will automaticly update if you change one of the source-cells.</p>
+            </aside>
+          </section>
+
+
+          <section>
+            <div class="dataflow-example">
+              <input type="number" id="a" value="3" class="node node-a"/>
+              <input type="number" id="b" value="2" class="node node-b"/>
+              <input type="number" id="c" class="node node-c"/>
+              <input type="number" id="d" value="2" class="node node-d"/>
+              <input type="text" id="sum" value="0" disabled="" class="node-result"/>
+            </div>
+
+            <script>
+              (function () {
+                var _add = function (a, b) { return a + b; },
+                    _sub = function (a, b) { return a - b; },
+                    _value = function (e) { return e.currentTarget.value; },
+                    getInputAsProperty = function (id) {
+                      var $el = $(id);
+                      return $el.asEventStream("change")
+                                .map(_value)
+                                .toProperty($el.val())
+                                .map(Number);
+                    };
+
+                var $a = getInputAsProperty("#a"),
+                    $b = getInputAsProperty("#b"),
+                    $c = $a.combine($b, _sub),
+                    $d = getInputAsProperty("#d");
+
+                $c.assign($("#c"), "val");
+                $c.combine($d, _add).assign($("#sum"), "val");
+              })();
+            </script>
+
+            <aside class="notes">
+
+            </aside>
+          </section>
+
+          <section>
+            <h3>Many popular frameworks have reactive functionality</h3>
+            <p>Like the one and two-way binding of Angular.js, Ember.js and Knockout</p>
+
+            <aside class="notes">
+              <p></p>
+            </aside>
+          </section>
+
+
+        </section>
+
+
+
+        <section>
+          <h2>Don't fall asleep yet!</h2>
+          <img src="/img/sizzle.gif" alt="Sizzeling Bacon" />
+          <p>The real fun is about to start.</p>
+        </section>
+
+        <section data-background="#a3354c" data-background-transition="slide">
+          <section>
+            <h2 class="stylish-text">Functional Reactive Programming</h2 >
+
+            <aside class="notes">
+            </aside>
+          </section>
+
+          <section>
+            <h3>Started with <span class="stylish-text">Coal Elliot</span> and <span class="stylish-text">Paul Hydak</span> in <span class="underline">1997</span></h3>
+            <p>Started with a system called
+              <span class="stylish-text">F</span>unctional
+              <span class="stylish-text">R</span>eactive
+              <span class="stylish-text">AN</span>imations, or <span class="stylish-text">FRAN</span> for short.</p>
+
+            <aside class="notes">
+            </aside>
+          </section>
+
+          <section>
+            <h3>Allows us to combine the magic from both the functional and the reactive paradigms.</h3>
+
+            <aside class="notes">
+            </aside>
+          </section>
+
+
+          <section>
+            <h2>Operate with two general concepts</h2>
+            <ol>
+                <li class="fragment"><h3 class="stylish-text">Behaviours</h3></li>
+                <li class="fragment"><h3 class="stylish-text">Events</h3></li>
+            </ol>
+            <aside class="notes">
+            </aside>
+          </section>
+
+          <section>
+            <h2 class="stylish-text">Behaviours</h2>
+            <p>Semantics: <code>f(t) -> v</code></p>
+
+            <aside class="notes">
+            </aside>
+          </section>
+
+          <section>
+            <h2 class="stylish-text">Events</h2>
+            <p>Semantics: <code>[(t, v)]</code></p>
+
+            <aside class="notes">
+            </aside>
+          </section>
+
+          <section>
+            <h2>In FRP we treat events and behaviours as sequences</h2>
+            <p>This allows make use of the power of functors and combinators.</p>
+
+            <aside class="notes">
+            </aside>
+          </section>
+
+          <section>
+            <h2>Why FRP?</h2>
+            <ol>
+                <li>Functional programming in a naturally <br />stateful enviroment (and all good that brings)</li>
+                <li>Fragmented, DRY code</li>
+                <li>Reactive data types abstracting state</li>
+                <li>GUI without side-effects</li>
+                <li>Is really good for handling UI and multiple inputs/outputs</li>
+            </ol>
+
+            <aside class="notes">
+            </aside>
+          </section>
+        </section>
+
+        <section data-background-transition="slide">
+          <h2>Now. <span class="stylish-text">Prepare</span> to be <span class="underline">amazed</span></h2>
+        </section>
+
+        <section data-background="/img/skyrim.jpeg" data-background-transition="slide">
+        </section>
+
+        <section>
+          <section>
+            <h3>Remember <span class="stylish-text">this</span>?</h3>
+            <div class="dataflow-example">
+              <input type="number" id="a2" value="3" class="node node-a"/>
+              <input type="number" id="b2" value="2" class="node node-b"/>
+              <input type="number" id="c2" class="node node-c"/>
+              <input type="number" id="d2" value="2" class="node node-d"/>
+              <input type="text" id="sum2" value="0" disabled="" class="node-result"/>
+            </div>
+
+            <script>
+              (function () {
+                var _add = function (a, b) { return a + b; },
+                    _sub = function (a, b) { return a - b; },
+                    getInputAsProperty = function (id) {
+                      var $el = $(id);
+                      return $el.asEventStream("change")
+                                .map(".currentTarget.value")
+                                .toProperty($el.val())
+                                .map(Number);
+                    };
+
+                var $a = getInputAsProperty("#a2"),
+                    $b = getInputAsProperty("#b2"),
+                    $c = $a.combine($b, _sub),
+                    $d = getInputAsProperty("#d2");
+
+                $c.assign($("#c2"), "val");
+                $c.combine($d, _add).assign($("#sum2"), "val");
+              })();
+            </script>
+          </section>
+
+          <section>
+            <h3>A lot of <span class="underline">spaggeti</span> code, right?</h3>
+            <h2 class="stylish-text fragment">Nope</h2>
+            <p class="fragment">Let's see some code</p>
+          </section>
+
+          <section>
+            <div class="code">
+<pre class="fragment" data-fragment-index="1"><code class="javascript">function inputAsBehaviour(id) {</code></pre>
+            <pre>
+<code class="javascript">  var $el = $(id);
+  var behaviour = $el.asEventStream("change")
+            .map(".currentTarget.value")
+            .toProperty($el.val())
+            .map(Number);
+</code></pre>
+<pre class="fragment" data-fragment-index="1"><code class="javascript">  return behaviour;
+}</code></pre>
+            </div>
+          </section>
+
+          <section data-background="/img/kevin_zoom.gif" data-background-transition="slide">
+          </section>
+
+          <section>
+            <div class="code">
+            <pre>
+<code class="javascript">var $a = inputAsBehaviour("#a"),
+    $b = inputAsBehaviour("#b"),</code></pre>
+<pre class="fragment" data-fragment-index="1"><code class="javascript">    $d = inputAsBehaviour("#d"),
+    $c = $a.combine($b, _sub);
+</code></pre>
+<pre class="fragment" data-fragment-index="2"><code class="javascript">$c.assign($("#c"), "val");
+$c.combine($d, _add)
+  .assign($("#sum"), "val");
+</code></pre>
+            </div>
+          </section>
+
+          <section data-background="/img/kevin_yeah.jpg" data-background-transition="slide">
+          </section>
+
+          <section>
+            <h3>We've just experienced <span class="stylish-text">Bacon.js</span></h3>
+          </section>
+
+        </section>
+
+        <section data-background="/img/francis.jpg" data-background-transition="slide">
+          <h2 class="black bacon-title"><span class="stylish-text">Bacon.js</span></h2>
+
+          <aside class="notes">
+            <p>For those of you not knowing who this is; It's Francis Bacon. A known English philosopher, scientist and writer.</p>
+            <p>Often refered to as the creator of empiricism.</p>
+          </aside>
+        </section>
+
+        <section>
+          <section>
+            <h3>In Bacon.js we call a <span class="underline">Behaviour</span> a <span class="stylish-text">Property</span></h3>
+            <h3>and <span class="underline">Events</span> are called <span class="stylish-text">EventStreams</span></h3>
+          </section>
+
+          <section>
+            <h3>The semantics of Bacon.js is
+              <span class="underline">true FRP</span>, as we
+              have both <span class="stylish-text">behaviours</span> and <span class="stylish-text">events</span></h3>
+
+            <aside class="notes">
+              <p>This is as apposed to for example Reactive Extensions, where we only have the concept of observables.</p>
+            </aside>
+          </section>
+
+          <section>
+            <h3>As we've seen, we encapsulate data sources to make them reactive</h3>
+            <ul>
+              <li><code>fromEventTarget</code></li>
+              <li><code>fromPromise</code></li>
+              <li><code>fromCallback</code></li>
+              <li>... and more</li>
+            </ul>
+          </section>
+
+          <section>
+            <h3>Allows us to do</h3>
+            <div class="code">
+            <pre><code class="javascript">Bacon.sequentially(100, [110, 100, 99])
+  .map(String.fromCharCode)
+  .map(".toUpperCase")
+  .fold("", ".concat")
+  .log("Value: ");
+// => Value: NDC
+// (after 300 ms)</code></pre></div>
+          </section>
+
+          <section>
+            <h3>Or simply</h3>
+            <div class="code">
+            <pre><code class="javascript">Bacon.fromEventTarget(el, "change")
+  .map(".currentTarget.checked")
+  .toProperty(el.checked);</code></pre></div>
+          </section>
+
+        </section>
+
+        <section data-background="/img/kevin_cool.jpg" data-background-transition="slide">
+          <aside class="notes">
+            <p>That is pretty cool? Possibly event cooler than this guy?</p>
+          </aside>
+        </section>
+
+        <section data-background="rgba( 22, 152, 213, 0.7 )" data-background-transition="slide">
+          <section>
+            <h2>So… <span class="stylish-text">When</span> and <span class="stylish-text">Where</span>?</h2>
+          </section>
+
+          <section>
+            <h2>Easily <span class="underline">combine</span> with frameworks or libraries.</h2>
+            <p>Can use as a part of an application</p>
+          </section>
+
+          <section>
+            <h2>Example: React</h2>
+            <div class="code">
+            <pre><code data-trim="" class="javascript">
+var textStream = new Bacon.Bus;
+var labelStream = textStream.map(reverseText);
+React.renderComponent(React.DOM.div(null,
+  TextField({ stream: textStream }),
+  Label({ stream: labelStream })
+), document.body);</code></pre></div>
+<p><small><em>*</em> See full example by Josh Bassett <a href="http://joshbassett.info/2014/reactive-uis-with-react-and-bacon/">http://joshbassett.info/</a></small></p>
+          </section>
+
+          <section>
+            <h2>Example: Backbone</h2>
+            <div class="code">
+            <pre><code data-trim="" class="javascript">
+var newTodo = this.$('#new-todo')
+  .asEventStream('click');
+Bacon.combineTemplate({ title: titleProperty,
+  done: checkBoxProperty })
+  .sampleBy(newTodo)
+  .onValue(this.collection.create);
+
+newTodo.onValue(this.resetForm):
+</code></pre></div>
+          </section>
+
+          <section>
+            <h3><span class="stylish-text">Functional Reactive Programming</span> should be used when you have a <span class="underline">lot of handling of events and state</span>.</h3>
+          </section>
+        </section>
+
+      </div>
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.min.js"></script>
+
+    <script>
+
+      // Full list of configuration options available here:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: false,
+        progress: true,
+        history: true,
+        center: true,
+        transition: 'linear',
+
+        // Parallax scrolling
+        // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+        // parallaxBackgroundSize: '2100px 1100px',
+
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+          { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+          { src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+          { src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+        ]
+      });
+
+    </script>
+
+  </body>
+</html>

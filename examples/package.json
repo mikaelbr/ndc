@@ -1,0 +1,22 @@
+{
+  "name": "experiments",
+  "version": "0.0.0",
+  "description": "",
+  "main": "pulse-stream.js",
+  "dependencies": {
+    "baconjs": "^0.7.12",
+    "smoothie": "^1.23.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch-css": "catw -c 'lessc -' 'style/*.less' -o static/bundle.css -v",
+    "watch-js": "watchify browser/*.js -o static/bundle.js -dv",
+    "watch": "npm run watch-css & npm run watch-js",
+    "build-css": "catw -c 'lessc -' 'style/*.less' > static/bundle.css",
+    "build-js": "browserify browser/*.js > static/bundle.js",
+    "build": "npm run build-css && npm run build-js"
+  },
+  "author": "",
+  "license": "ISC"
+}
