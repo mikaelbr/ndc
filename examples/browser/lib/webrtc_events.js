@@ -7,6 +7,10 @@ var interval = null;
 
 navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
 
+var error = function () {
+  console.log("error getting camera");
+}
+
 var WebRTC = module.exports = function (options) {
   var emitter = this;
 
@@ -23,9 +27,9 @@ var WebRTC = module.exports = function (options) {
     throw new Error("Invalid arguments given");
   }
 
-  navigator.webkitGetUserMedia({ video: true}, function(stream) {
+  navigator.getUserMedia({ video: true}, function(stream) {
     elVideo.src = window.URL.createObjectURL(stream);
-  });
+  }, error);
 
   this.on('newListener', function () {
     maybeStartData(intervalTime, emitter, elVideo, elSnapshot);

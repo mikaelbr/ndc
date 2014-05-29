@@ -17,11 +17,8 @@ bpm
     bpmChart.append(new Date().getTime(), data);
   });
 
-window.bpm = bpm;
-
 // Show picture of me every time I have a pulse over given input
 comp.picture(bpm).log();
-
 
 // Show pulse (heart beats)
 var beatsChart = chart.beats();
@@ -35,6 +32,3 @@ Bacon.interval(50, 0)
   .onValue(function (data) {
     beatsChart.append(new Date().getTime(), data);
   });
-
-
-

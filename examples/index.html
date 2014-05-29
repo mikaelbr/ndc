@@ -4,32 +4,49 @@
   <meta charset="UTF-8">
   <title>Bacon Test</title>
 
-  <style>
-    .hidden {
-      visibility: hidden;
-    }
-  </style>
+  <link rel="stylesheet" href="static/main.css" />
 </head>
 <body>
 
-<audio id="heartbeat-sound" preload="auto" src="assets/heartbeat.mp3"></audio>
+<div class="wrapper">
+  <main class="graphs">
+    <div class="graph-wrapper">
+      <div class="first">
+        <h2>Current heart rate: <span>120</span><small>bpm</small></h2>
+        <canvas id="bpm" width="500" style="width: 100%;" height="100"></canvas>
+      </div>
+      <div class="second">
+        <h2>Live Pulse</h2>
+        <canvas id="heartbeats" width="500" height="100"></canvas>
+      </div>
+    </div>
 
-<label for="do-play-sound">
-  <input type="checkbox" id="do-play-sound" />
-  Play heart beat sound
-</label>
+    <div class="sound-wrapper">
+      <audio id="heartbeat-sound" preload="auto" src="assets/heartbeat.mp3"></audio>
+      <label for="do-play-sound">
+        <input type="checkbox" id="do-play-sound" />
+        Play heart beat sound
+      </label>
+    </div>
+  </main>
 
-<canvas id="bpm" width="500" style="width: 100%;" height="100"></canvas>
-<canvas id="heartbeats" width="500" height="100"></canvas>
+  <aside class="image-wrapper">
+    <div class="threshold-input">
+      <input type="number" id="max-bpm" value="120" />
+    </div>
 
-<input type="number" id="max-bpm" value="120" />
+    <div class="image-output">
+      <img class="test-image" alt="Me when I'm nervous" />
+    </div>
 
-<img class="test-image" alt="Screen shot" />
-
-<div class="hidden">
-  <video autoplay></video>
-  <canvas id="screenshots"></canvas>
+    <div class="hidden helper-box">
+      <video autoplay></video>
+      <canvas id="screenshots"></canvas>
+    </div>
+  </aside>
 </div>
+
+
 
 
 <script src="static/bundle.js"></script>

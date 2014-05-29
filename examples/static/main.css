@@ -1,0 +1,336 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700,400italic,700italic);
+@import url(http://fonts.googleapis.com/css?family=Lobster);
+*,
+*:before,
+*:after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+/* Reset.less
+ * Props to Eric Meyer (meyerweb.com) for his CSS reset file. We're using an adapted version here that cuts out some of the reset HTML elements we will never need here (i.e., dfn, samp, etc).
+ * ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+dd,
+dl,
+dt,
+li,
+ol,
+ul,
+fieldset,
+form,
+label,
+legend,
+button,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-weight: normal;
+  font-style: normal;
+  font-size: 100%;
+  line-height: 1;
+  font-family: inherit;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+ol,
+ul {
+  list-style: none;
+}
+q:before,
+q:after,
+blockquote:before,
+blockquote:after {
+  content: "";
+}
+html {
+  overflow-y: scroll;
+  font-size: 100%;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+}
+a:focus {
+  outline: thin dotted;
+}
+a:hover,
+a:active {
+  outline: 0;
+}
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+nav,
+section {
+  display: block;
+}
+audio,
+canvas,
+video {
+  display: inline-block;
+  *display: inline;
+  *zoom: 1;
+}
+audio:not([controls]) {
+  display: none;
+}
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+sup {
+  top: -0.5em;
+}
+sub {
+  bottom: -0.25em;
+}
+img {
+  border: 0;
+  -ms-interpolation-mode: bicubic;
+}
+button,
+input,
+select,
+textarea {
+  font-size: 100%;
+  margin: 0;
+  vertical-align: baseline;
+  *vertical-align: middle;
+}
+button,
+input {
+  line-height: normal;
+  *overflow: visible;
+}
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+}
+button,
+input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+  cursor: pointer;
+  -webkit-appearance: button;
+}
+input[type="search"] {
+  -webkit-appearance: textfield;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+}
+input[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+textarea {
+  overflow: auto;
+  vertical-align: top;
+}
+body,
+html {
+  height: 100%;
+  min-height: 100%;
+}
+body {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-flow: center;
+  -ms-flex-flow: center;
+  flex-flow: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  height: 100%;
+  background: -webkit-gradient(linear, left top, left bottom, from(#356aa0), to(#356aa0));
+  background: -webkit-linear-gradient(top, #356aa0 0%, #356aa0 100%);
+  background: linear-gradient(to bottom, #356aa0 0%, #356aa0 100%);
+  color: #eeeeee;
+  font-family: 'Open Sans', sans-serif;
+}
+body:before {
+  position: absolute;
+  content: "";
+  display: block;
+  background: url('http://open.bekk.no/Content/Images/BEKK_logo.svgz') left top no-repeat;
+  width: 120px;
+  height: 25px;
+  bottom: 30px;
+  left: 20px;
+  -webkit-background-size: 120px 25px;
+  background-size: 120px 25px;
+  z-index: 9999;
+}
+::-moz-selection {
+  color: white;
+  background: #fd5157;
+  text-shadow: none;
+}
+::selection {
+  color: white;
+  background: #fd5157;
+  text-shadow: none;
+}
+h1,
+h2,
+h3,
+h4 {
+  margin: 0 0 20px 0;
+  font-family: Georgia, sans-serif;
+  line-height: 1.2em;
+  letter-spacing: 0em;
+  text-transform: none;
+  text-shadow: none;
+  -webkit-hyphens: auto;
+  -moz-hyphens: auto;
+  -ms-hyphens: auto;
+  hyphens: auto;
+  word-wrap: break-word;
+  line-height: 1;
+}
+h1 {
+  font-size: 3.77em;
+}
+h2 {
+  font-size: 2.11em;
+}
+h3 {
+  font-size: 1.55em;
+}
+h4 {
+  font-size: 1em;
+}
+.stylish-text {
+  font-family: "Lobster", sans-serif;
+}
+.wrapper {
+  width: 80%;
+  min-width: 500px;
+  margin: auto;
+  max-height: 90%;
+  overflow: auto;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-align-content: space-between;
+  -ms-flex-line-pack: justify;
+  align-content: space-between;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  background: #1b1b1b;
+  border: 15px solid #a3354c;
+  padding: 20px;
+}
+.graphs,
+.image-wrapper {
+  margin: 20px 40px;
+  min-width: 500px;
+}
+.helper-box {
+  height: 1px;
+  width: 1px;
+  display: block;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+.image-wrapper .test-image {
+  width: 100%;
+  height: auto;
+}
+.image-wrapper input[type=number] {
+  width: 100%;
+  padding: 10px;
+  -webkit-box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);
+  background: #23241f;
+  border: 0;
+  color: #eeeeee;
+  font-size: 1.4em;
+}
+.graph-wrapper h2 span {
+  font-size: 1.8em;
+}
+.graph-wrapper h2 small {
+  vertical-align: baseline;
+  color: #a3354c;
+}
+.graph-wrapper .second {
+  margin-top: 20px;
+}
+.sound-wrapper {
+  font-size: 1.4em;
+  text-align: center;
+}
+.sound-wrapper input {
+  width: 25px;
+  height: 25px;
+}

@@ -1,0 +1,89 @@
+
+*, *:before, *:after {
+  -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
+}
+
+@import "includes/_reset.less";
+@import "includes/_body.less";
+
+
+.wrapper {
+  width: 80%;
+  min-width: 500px;
+  margin: auto;
+  max-height: 90%;
+  overflow: auto;
+
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  align-content: space-between;
+  justify-content: center;
+
+  background: #1b1b1b;
+  border: 15px solid #a3354c;
+  padding: 20px;
+}
+
+.graphs, .image-wrapper {
+  margin: 20px 40px;
+  min-width: 500px;
+}
+
+.helper-box {
+  height: 1px;
+  width: 1px;
+  display: block;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+
+.graphs {
+}
+
+.image-wrapper {
+
+  .test-image {
+    width: 100%;
+    height: auto;
+  }
+
+  input[type=number] {
+    width: 100%;
+    padding: 10px;
+    box-shadow: 0 0 6px rgba(0,0,0,.3);
+    background: #23241f;
+    border: 0;
+    color: #eeeeee;
+
+    font-size: 1.4em;
+  }
+}
+
+.graph-wrapper {
+
+  h2 span {
+    font-size: 1.8em;
+  }
+  h2 small {
+    vertical-align: baseline;
+    color: #a3354c;
+  }
+
+  .second {
+    margin-top: 20px;
+  }
+}
+
+.sound-wrapper {
+  font-size: 1.4em;
+  text-align: center;
+
+  input {
+    width: 25px;
+    height: 25px;
+  }
+}

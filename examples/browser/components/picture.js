@@ -13,14 +13,16 @@ module.exports = function (bpm) {
       return a >= b;
     });
 
-  var picture =
-    webrtc({
+  var rtc = webrtc({
       elVideo: _.$$("video"),
       elSnapshot: _.$$("#screenshots")
-    })
-    .filter(pulseIsOverInput);
+    });
+
+  var picture = rtc.filter(pulseIsOverInput);
 
   picture.assign($(".test-image"), "attr", "src");
+  picture.map(Boolean).toProperty(false).assign($(".test-image"), "toggle");
+  rtc.map(Boolean).toProperty(false).assign($("input[type=number]"), "toggle");
 
   return picture;
 };
