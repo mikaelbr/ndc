@@ -228,6 +228,23 @@ body:before {
   .about-me p {
     font-size: 1.2em; }
 
+.heartrate-box {
+  left: 0;
+  top: 0;
+  position: absolute;
+  width: 200px;
+  height: 50px;
+  z-index: 9999;
+  display: none; }
+  .heartrate-box p {
+    position: absolute;
+    color: rgba(255, 255, 255, 0.7);
+    text-align: center;
+    margin-top: 20px;
+    width: 100%;
+    font-family: "Open Sans", sans-serif;
+    font-size: 3em; }
+
 .reveal .stylish-text {
   font-family: "Lobster", sans-serif; }
 .reveal .underline {

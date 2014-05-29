@@ -23,10 +23,15 @@
 
     <div class="sound-wrapper">
       <audio id="heartbeat-sound" preload="auto" src="assets/heartbeat.mp3"></audio>
-      <label for="do-play-sound">
-        <input type="checkbox" id="do-play-sound" />
-        Play heart beat sound
-      </label>
+      <div class="switch">
+        <input type="checkbox"  id="do-play-sound">
+        <label>
+          <span class="fontawesome-ok"></span>
+          <span class="fontawesome-remove"></span>
+          <div></div>
+        </label>
+        <p>Play Sound</p>
+      </div>
     </div>
   </main>
 
@@ -45,9 +50,6 @@
     </div>
   </aside>
 </div>
-
-
-
 
 <script src="static/bundle.js"></script>
 

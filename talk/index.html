@@ -31,16 +31,21 @@
     <script src="lib/js/html5shiv.js"></script>
     <![endif]-->
 
+    <script type="text/javascript" src="lib/js/smoothie.js"></script>
     <script type="text/javascript" src="lib/js/jquery.js"></script>
     <script type="text/javascript" src="lib/js/bacon.js"></script>
+    <script type="text/javascript" src="lib/js/pusher.js"></script>
 
   </head>
 
   <body>
+    <div class="heartrate-box">
+      <p><span class="heartrate-initial">N/A</span></p>
+      <canvas id="heartrate-graph" width="200" height="50"></canvas>
+    </div>
 
     <div class="reveal">
       <div class="slides">
-
         <section>
           <h2>Functional Reactive Programming</h2>
         </section>
@@ -77,7 +82,7 @@
 
         <section class="pulse" data-state="pulse" data-background="#a3354c" data-background-transition="slide">
           <h3>This is my heart rate right now:</h3>
-          <h1>120<small>bpm</small></h1>
+          <h1><span class="heartrate-initial">120</span><small>bpm</small></h1>
 
           <aside class="notes">
             <p>As you probably can tell, all that Bacon isn't good for me. I must admit, me being horrendously nervous, might affect my heart rate as well.</p>
@@ -88,7 +93,6 @@
 
         <section class="pulse" data-state="pulse-activate-1">
           <h3>During this presentation you will see my heart rate at the upper left in these slides.</h3>
-          <h1 class="fragment">120<small>bpm</small></h1>
         </section>
 
         <section>
@@ -613,6 +617,59 @@ newTodo.onValue(this.resetForm):
 
     <script src="lib/js/head.min.js"></script>
     <script src="js/reveal.min.js"></script>
+
+    <script>
+      (function () {
+        var pusher = new Pusher('c12a7cbce4c696c849ae');
+        var channel = pusher.subscribe('heartrate');
+        var bpmChart = createChart($("#heartrate-graph")[0], {
+          resetBounds: false,
+          grid: {
+            strokeStyle: 'transparent',
+            fillStyle: 'transparent'
+          },
+          labels: {
+            disabled: true
+          },
+        }, {
+          strokeStyle: '#fff',
+          lineWidth: 2,
+        });
+
+        var bpm = Bacon.fromEventTarget(channel, 'data')
+          .map('.value')
+          .map(Number);
+
+        bpm.assign($(".heartrate-initial"), 'text');
+        bpm.onValue(function (data) {
+          bpmChart.append(new Date().getTime(), data);
+        });
+
+        Reveal.addEventListener('slidechanged', function(e) {
+          if (e.indexh >= 6) {
+            $(".heartrate-box").show();
+          }
+        }, false );
+
+        function createChart (elCanvas, options, seriesOptions) {
+          intervalTime = options.intervalTime || 1000;
+
+          var timeSeries = new TimeSeries(options);
+          var chart = new SmoothieChart(options);
+
+          chart.addTimeSeries(timeSeries, seriesOptions || {
+            strokeStyle: 'rgba(0, 255, 0, 1)',
+            fillStyle: 'rgba(0, 255, 0, 0.2)',
+            lineWidth: 4
+          });
+
+          chart.streamTo(elCanvas, intervalTime);
+
+          return timeSeries;
+        }
+      }());
+
+    </script>
 
     <script>
 

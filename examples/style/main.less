@@ -2,6 +2,7 @@
 *, *:before, *:after {
   -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
 }
+@import "includes/_switch.less";
 
 @import "includes/_reset.less";
 @import "includes/_body.less";
@@ -40,8 +41,12 @@
   overflow: hidden;
 }
 
-
-.graphs {
+.sound-wrapper {
+  p {
+    text-align: center;
+    font-size: 1.4em;
+    margin-top: 10px;
+  }
 }
 
 .image-wrapper {
@@ -75,15 +80,5 @@
 
   .second {
     margin-top: 20px;
-  }
-}
-
-.sound-wrapper {
-  font-size: 1.4em;
-  text-align: center;
-
-  input {
-    width: 25px;
-    height: 25px;
   }
 }
