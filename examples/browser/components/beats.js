@@ -2,7 +2,7 @@ var Bacon = require('baconjs');
 var $ = require('jquery');
 
 
-// Convert bpm to stream of beats
+// Convert bpm to stream of beats (pulse)
 module.exports = function (bpm) {
 
   var interval = bpm
@@ -19,6 +19,16 @@ module.exports = function (bpm) {
     .map(true);
 
   // heartBeat.log("Pulse!");
+
+  var beatsChart = chart.beats();
+
+  Bacon
+    .interval(50, 0)
+    .merge(heartBeat.map(2))
+    .toProperty(0)
+    .onValue(function (data) {
+      beatsChart.append(new Date().getTime(), data);
+    });
 
   return heartBeat;
 };
