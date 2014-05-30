@@ -3,6 +3,62 @@ var $ = require('jquery');
 
 var $$ = module.exports.$$ = document.querySelector.bind(document);
 
+
+module.exports.propertyFromBPMInput = function () {
+  var el = $$("#max-bpm");
+
+};
+
+module.exports.isChecked = function () {
+  var el = $$("#do-play-sound");
+
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 module.exports.propertyFromBPMInput = function () {
   var el = $$("#max-bpm");
   return Bacon.fromEventTarget(el, "change")

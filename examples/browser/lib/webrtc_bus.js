@@ -3,7 +3,6 @@ const INTERVAL_TIME_MS = 1000;
 
 navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
 
-
 var error = function () {
   console.log("error getting camera");
 };
