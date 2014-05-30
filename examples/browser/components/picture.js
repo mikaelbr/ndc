@@ -20,9 +20,18 @@ module.exports = function (bpm) {
 
   var picture = rtc.filter(pulseIsOverInput);
 
-  picture.assign($(".test-image"), "attr", "src");
-  picture.map(Boolean).toProperty(false).assign($(".test-image"), "toggle");
-  rtc.map(Boolean).toProperty(false).assign($("input[type=number]"), "toggle");
+  picture
+    .assign($(".test-image"), "attr", "src");
+
+  picture
+    .map(Boolean)
+    .toProperty(false)
+    .assign($(".test-image"), "toggle");
+
+  rtc
+    .map(Boolean)
+    .toProperty(false)
+    .assign($("input[type=number]"), "toggle");
 
   return picture;
 };
