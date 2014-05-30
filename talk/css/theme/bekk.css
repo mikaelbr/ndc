@@ -255,6 +255,9 @@ body:before {
   color: #000; }
 .reveal .bacon-title {
   text-align: right; }
+.reveal ol li, .reveal ul li {
+  font-size: 1.2em;
+  line-height: 1.4em; }
 .reveal .pulse h1 {
   font-size: 8em; }
   .reveal .pulse h1 small {

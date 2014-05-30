@@ -366,7 +366,7 @@
         </section>
 
         <section data-background="#a3354c" data-background-transition="slide">
-          <h2>Why FRP?</h2>
+          <h2>Why FRP? <small>(1/2)</small></h2>
           <ol>
             <li>Functional programming in a naturally <br />stateful enviroment (and all the good that brings)</li>
             <li>Fragmented, DRY code</li>
@@ -374,7 +374,7 @@
         </section>
 
         <section data-background="#a3354c" data-background-transition="slide">
-          <h2>Why FRP?</h2>
+          <h2>Why FRP? <small>(1/2)</small></h2>
           <ol>
             <li>Reactive data types abstracting state</li>
             <li>GUI without side-effects</li>
@@ -541,35 +541,63 @@ $c.combine($d, _add)
         </section>
 
         <section data-background="rgba( 22, 152, 213, 0.7 )" data-background-transition="slide">
-          <h2>Example: React</h2>
+          <h2>Example: React <small>(1/2)</small></h2>
           <div class="code">
           <pre><code data-trim="" class="javascript">
 var textStream = new Bacon.Bus;
-var labelStream = textStream.map(reverseText);
+var labelStream =
+  textStream.map(reverseText);
+</code></pre>
+          </div>
+        </section>
+
+        <section data-background="rgba( 22, 152, 213, 0.7 )" data-background-transition="slide">
+          <h2>Example: React <small>(2/2)</small></h2>
+          <div class="code">
+          <pre><code data-trim="" class="javascript">
 React.renderComponent(React.DOM.div(null,
   TextField({ stream: textStream }),
   Label({ stream: labelStream })
-), document.body);</code></pre></div>
+), document.body);
+
+textStream.push("Hello World!");
+</code></pre></div>
 <p><small><em>*</em> See full example by Josh Bassett <a href="http://joshbassett.info/2014/reactive-uis-with-react-and-bacon/">http://joshbassett.info/</a></small></p>
         </section>
 
         <section data-background="rgba( 22, 152, 213, 0.7 )" data-background-transition="slide">
-          <h2>Example: Backbone</h2>
+          <h2>Example: Backbone <small>(1/2)</small></h2>
           <div class="code">
           <pre><code data-trim="" class="javascript">
+// in some initialize:
 var newTodo = this.$('#new-todo')
   .asEventStream('click');
-Bacon.combineTemplate({ title: titleProperty,
-  done: checkBoxProperty })
-  .sampleBy(newTodo)
-  .onValue(this.collection.create);
 
 newTodo.onValue(this.resetForm):
 </code></pre></div>
         </section>
 
         <section data-background="rgba( 22, 152, 213, 0.7 )" data-background-transition="slide">
+          <h2>Example: Backbone <small>(2/2)</small></h2>
+          <div class="code">
+          <pre><code data-trim="" class="javascript">
+Bacon.combineTemplate({
+  title: titleProperty,
+  done: checkBoxProperty
+})
+.sampleBy(newTodo)
+// Add to collection
+.onValue(this.collection.create);
+</code></pre></div>
+        </section>
+
+        <section data-background="rgba( 22, 152, 213, 0.7 )" data-background-transition="slide">
           <h3><span class="stylish-text">Functional Reactive Programming</span> should be used when you have a <span class="underline">lot of handling of events and state</span>.</h3>
+        </section>
+
+        <section data-background="rgba( 22, 152, 213, 0.7 )" data-background-transition="slide">
+          <h3>And many people use it in some way or form.</h3>
+          <h4>There are implementations in many languages, C#, Java, Javascript, Haskell, Objective C, and more.</h4>
         </section>
 
         <section data-background="rgba( 22, 152, 213, 0.7 )" data-background-transition="slide">
@@ -584,6 +612,12 @@ newTodo.onValue(this.resetForm):
 
         <section data-background="#a3354c" data-background-transition="slide">
           <h1>Let's get hacking on my heart rate</h1>
+        </section>
+
+        <section data-background="img/kevin_hope.jpg" data-background-transition="slide">
+          <aside class="notes">
+            <p>Kevin will be rooting for us</p>
+          </aside>
         </section>
 
         <section data-background="img/kevin_love.png" data-background-transition="slide">
@@ -646,7 +680,7 @@ newTodo.onValue(this.resetForm):
           .map('.value')
           .map(Number);
 
-        bpm.assign($(".heartrate-initial"), 'text');
+        bpm.toProperty(0).assign($(".heartrate-initial"), 'text');
         bpm.onValue(function (data) {
           bpmChart.append(new Date().getTime(), data);
         });

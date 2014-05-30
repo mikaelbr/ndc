@@ -196,6 +196,13 @@ body:before {
     text-align: right;
   }
 
+  ol, ul {
+    li {
+      font-size: 1.2em;
+      line-height: 1.4em;
+    }
+  }
+
   .pulse {
     h1 {
       font-size: 8em;
