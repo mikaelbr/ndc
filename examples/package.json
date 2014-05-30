@@ -15,7 +15,8 @@
   },
   "browserify": {
     "transform": [
-      "browserify-shim"
+      "browserify-shim",
+      "es6-arrow-function"
     ]
   },
   "devDependencies": {
@@ -26,7 +27,8 @@
     "watchify": "^0.10.1",
     "gulp-less": "^1.2.3",
     "gulp-autoprefixer": "0.0.7",
-    "browserify-shim": "^3.5.0"
+    "browserify-shim": "^3.5.0",
+    "es6-arrow-function": "^0.3.1"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

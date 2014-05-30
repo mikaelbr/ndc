@@ -10,9 +10,8 @@ var bpm = require('./datasource')();
 
 // Draw the beats per minute
 bpm
-  .onValue(function (data) {
-    bpmChart.append(new Date().getTime(), data);
-  });
+  .onValue((data) =>
+    bpmChart.append(new Date().getTime(), data));
 
 // Show above graph
 bpm.toProperty(0).assign($(".first h2 span"), 'text');

@@ -9,9 +9,8 @@ var _ = require('../lib/utils');
 module.exports = function (bpm) {
 
   var pulseIsOverInput =
-    bpm.combine(_.propertyFromBPMInput(), function(a, b) {
-      return a >= b;
-    });
+    bpm.combine(_.propertyFromBPMInput(),
+      (a, b) => a >= b);
 
   var rtc = webrtc({
       elVideo: _.$$("video"),
