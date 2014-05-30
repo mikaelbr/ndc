@@ -6,7 +6,7 @@ var random = function (min, max) {
   }
 };
 
-var create = module.exports.create = function (min, max) {
+module.exports = function (min, max) {
   min = min || 60;
   max = max || 130;
 
@@ -15,6 +15,3 @@ var create = module.exports.create = function (min, max) {
               .map(random(min, max));
 
 };
-
-
-module.exports = create();
