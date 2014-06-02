@@ -116,7 +116,7 @@
           <h2 class="stylish-text">Functional Programming</h2>
           <div class="fragment">
             <p>A programming paradigm with <span class="underline">functions</span> as a central concept.</p>
-            <p>Has it's roots with <span class="underline">lambda calculus</span>.</p>
+            <p>Has its roots in <span class="underline">lambda calculus</span>.</p>
           </div>
 
           <aside class="notes">
@@ -131,7 +131,7 @@
 
           <section data-background="#297f79" data-background-transition="slide">
             <h2 class="stylish-text">Some buzzy words</h2>
-            <p class="fragment"><span class="underline">First class, higher order</span> functions!</p>
+            <p class="fragment"><span class="underline">First class</span>, <span class="underline">higher order</span> functions!</p>
             <p class="fragment">It is <span class="underline">declarative</span>, <span class="underline">stateless</span>, <span class="underline">side-effect free</span>, and <span class="underline">immutable</span>.</p>
 
             <aside class="notes">
@@ -140,7 +140,7 @@
 
           <section data-background="#297f79" data-background-transition="slide">
             <h2 class="stylish-text">Declarative?</h2>
-            <p class="fragment">Write what we want, not how we want it.</p>
+            <p class="fragment">Describe what we want, not how we want it.</p>
 
             <aside class="notes">
               <p>Write less. Abstract more. Trust the compiler.</p>
@@ -149,22 +149,12 @@
           </section>
 
           <section data-background="#297f79" data-background-transition="slide">
-            <h2 class="stylish-text">Stateless?</h2>
-            <p class="fragment">The system rely solely on input, no existing state</p>
+            <h2 class="stylish-text">Stateless and Side-effect free?</h2>
+            <p class="fragment">The system rely solely on input, no external state</p>
 
             <aside class="notes">
-              <p>Like a box</p>
-            </aside>
-          </section>
-
-          <section data-background="#297f79" data-background-transition="slide">
-            <h2 class="stylish-text">Side-effect free?</h2>
-            <div class="fragment">
               <p>We have the notion of pure functions.</p>
               <p>Given the same input, we can expect the same output everytime — no matter the system state.</p>
-            </div>
-
-            <aside class="notes">
               <p>No code inside a function can alter the behaviour of code outside that function.</p>
             </aside>
           </section>
@@ -172,12 +162,12 @@
           <section data-background="#297f79" data-background-transition="slide">
             <h2 class="stylish-text">Immutable?</h2>
             <div class="fragment">
-              <p>Once a value is set, we can not override this value.</p>
+              <p>Once a value is set, we do not override this value.</p>
               <p>Return new values instead of altering existing ones.</p>
             </div>
 
             <aside class="notes">
-              <p>No code inside a function can alter the behaviour of code outside that function.</p>
+              <p></p>
             </aside>
           </section>
 
@@ -190,7 +180,7 @@
           </section>
 
           <section>
-            <h3>Achived with using functors and combinators</h3>
+            <h3>Achieved by using functors and combinators</h3>
 
             <aside class="notes">
               <p>Information about functors and combinators</p>
@@ -198,9 +188,7 @@
           </section>
 
           <section>
-<pre><code class="javascript">[1, 2, 3].map(function (i) {
-  return i * 2;
-});
+<pre><code class="javascript">[1, 2, 3].map(i => i * 2;);
 //= [2, 4, 6]
 </code></pre>
 
@@ -211,9 +199,7 @@
           <section>
             <div class="code">
             <pre>
-<code class="javascript">[1, 2, 3].reduce(function (acc, i) {
-  return acc + i;
-});
+<code class="javascript">[1, 2, 3].reduce((acc, i) => acc + i);
 //= 6
 </code></pre>
             </div>
@@ -244,7 +230,7 @@
         </section>
 
         <section data-background="#0a3c59" data-background-transition="slide">
-          <h2>Classical analogy: Spreadsheets</h2>
+          <h2>Classic analogy: Spreadsheets</h2>
 
           <aside class="notes">
             <p>The most used and very explanatory analogy would be spreadsheets.</p>
@@ -291,8 +277,8 @@
         </section>
 
         <section data-background="#0a3c59" data-background-transition="slide">
-          <h3>Many popular frameworks have <span class="stylish-text">reactive functionality</span></h3>
-          <p>Like the <span class="underline">one and two-way binding</span> of Angular.js, Ember.js and Knockout</p>
+          <h3><span class="stylish-text">Reactive properties</span> are present in many familiar frameworks</h3>
+          <p>Like the <span class="underline">data binding</span> of Angular.js, Ember.js and Knockout</p>
 
           <aside class="notes">
             <p></p>
@@ -317,14 +303,14 @@
           <p>Started with a system called
             <span class="bold">F</span>unctional
             <span class="bold">R</span>eactive
-            <span class="bold">AN</span>imations, or <span class="stylish-text">FRAN</span> for short.</p>
+            <span class="bold">AN</span>imations, or <span class="underline">FRAN</span> for short.</p>
 
           <aside class="notes">
           </aside>
         </section>
 
         <section data-background="#a3354c" data-background-transition="slide">
-          <h3>Allows us to combine the magic from both the <span class="stylish-text">functional</span> and the <span class="stylish-text">reactive</span> paradigms.</h3>
+          <h3>Allows us to combine the power from both the <span class="stylish-text">functional</span> and the <span class="stylish-text">reactive</span> paradigms.</h3>
 
           <aside class="notes">
           </aside>
@@ -332,7 +318,7 @@
 
 
         <section data-background="#a3354c" data-background-transition="slide">
-          <h2>Operate with two general concepts</h2>
+          <h2>Operate with two primary abstractions</h2>
           <ol>
               <li class="fragment"><h3 class="stylish-text">Behaviours</h3></li>
               <li class="fragment"><h3 class="stylish-text">Events</h3></li>
@@ -358,7 +344,7 @@
         </section>
 
         <section data-background="#a3354c" data-background-transition="slide">
-          <h2>In FRP we treat events and <span class="stylish-text">behaviours</span> as <span class="underline">sequences</span></h2>
+          <h2>In FRP we treat <span class="stylish-text">events</span> and <span class="stylish-text">behaviours</span> as <span class="underline">sequences</span></h2>
           <p>This allows make use of the power of functors and combinators.</p>
 
           <aside class="notes">
@@ -368,16 +354,16 @@
         <section data-background="#a3354c" data-background-transition="slide">
           <h2>Why FRP? <small>(1/2)</small></h2>
           <ol>
-            <li>Functional programming in a naturally <br />stateful enviroment (and all the good that brings)</li>
+            <li>Functional programming in a naturally stateful enviroment</li>
             <li>Fragmented, DRY code</li>
           </ol>
         </section>
 
         <section data-background="#a3354c" data-background-transition="slide">
-          <h2>Why FRP? <small>(1/2)</small></h2>
+          <h2>Why FRP? <small>(2/2)</small></h2>
           <ol>
             <li>Reactive data types abstracting state</li>
-            <li>GUI without side-effects</li>
+            <li>Limit side-effects in the GUI</li>
             <li>Is really good for handling UI and multiple inputs/outputs</li>
           </ol>
 
@@ -468,7 +454,7 @@ $c.combine($d, _add)
         </section>
 
         <section>
-          <h3>We've just experienced <span class="stylish-text">Bacon.js</span></h3>
+          <h3>We have just experienced <span class="stylish-text">Bacon.js</span></h3>
         </section>
 
         <section data-background="img/francis.jpg" data-background-transition="slide">
@@ -486,9 +472,9 @@ $c.combine($d, _add)
         </section>
 
         <section>
-          <h3>The semantics of Bacon.js is
-            <span class="underline">classic FRP</span>, as we
-            have both <span class="stylish-text">behaviours</span> and <span class="stylish-text">events</span></h3>
+          <h3>The semantics of Bacon.js come from
+            <span class="underline">classic FRP</span>, where we have both
+            <span class="stylish-text">behaviours</span> and <span class="stylish-text">events</span></h3>
 
           <aside class="notes">
             <p>This is as apposed to for example Reactive Extensions, where we only have the concept of observables.</p>
@@ -496,7 +482,7 @@ $c.combine($d, _add)
         </section>
 
         <section>
-          <h3>As we've seen, we encapsulate data sources to make them reactive</h3>
+          <h3>As we've seen, we wrap data sources to make them reactive</h3>
           <ul>
             <li><code>fromEventTarget</code></li>
             <li><code>fromPromise</code></li>
@@ -518,7 +504,7 @@ $c.combine($d, _add)
         </section>
 
         <section>
-          <h3>Or simply</h3>
+          <h3>Or</h3>
           <div class="code">
           <pre><code class="javascript">Bacon.fromEventTarget(el, "change")
 .map(".currentTarget.checked")
@@ -536,7 +522,7 @@ $c.combine($d, _add)
         </section>
 
         <section data-background="rgba( 22, 152, 213, 0.7 )" data-background-transition="slide">
-          <h2><span class="underline">Easily combine</span> with frameworks or libraries.</h2>
+          <h2>Can be <span class="underline">easily combined</span> with frameworks or libraries.</h2>
           <p>Can use as a part of an application</p>
         </section>
 
@@ -592,11 +578,11 @@ Bacon.combineTemplate({
         </section>
 
         <section data-background="rgba( 22, 152, 213, 0.7 )" data-background-transition="slide">
-          <h3><span class="stylish-text">Functional Reactive Programming</span> should be used when you have a <span class="underline">lot of handling of events and state</span>.</h3>
+          <h3><span class="stylish-text">Functional Reactive Programming</span> should be used when you need to <span class="underline">manage alot of events and state</span>.</h3>
         </section>
 
         <section data-background="rgba( 22, 152, 213, 0.7 )" data-background-transition="slide">
-          <h3>And many people use it in some way or form.</h3>
+          <h3>And it is used in many different contexts.</h3>
           <h4>There are implementations in many languages, C#, Java, Javascript, Haskell, Objective C, and more.</h4>
         </section>
 
@@ -629,10 +615,10 @@ Bacon.combineTemplate({
         <section>
           <h2>Some key take aways</h2>
           <ol>
-            <li class="fragment"><span class="stylish-text">FRP</span> gives us functional programming in a stateful enviroment</li>
-            <li class="fragment">Let's us build up a complex application <span class="underline">fragment by fragment</span>.</li>
-            <li class="fragment"><span class="stylish-text">Immutable</span> values for easy re-use</li>
-            <li class="fragment"><span class="underline">Avoids</span> spaghetti</li>
+            <li class="fragment">FRP gives us functional programming in a stateful enviroment</li>
+            <li class="fragment">Let's us build up a complex application fragment by fragment.</li>
+            <li class="fragment">Immutable values for easy re-use</li>
+            <li class="fragment">Avoids spaghetti</li>
           </ol>
         </section>
 
