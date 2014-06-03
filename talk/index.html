@@ -48,10 +48,20 @@
       <div class="slides">
         <section>
           <h2>Functional Reactive Programming</h2>
+
+          <aside class="notes">
+            <p>Welcome to my little talk about functional reactive programming.</p>
+            <p>In this talk we will look more into what functional reactive programming is and how to use it in practical applications.</p>
+            <p>Note: I will use Javascript in this talk, but the general concept and the paradigm is more or less agnostic to language.</p>
+          </aside>
         </section>
 
         <section data-background="#0a3c59" data-background-transition="slide">
           <h2 class="stylish-text">... and Bacon!</h2>
+
+          <aside class="notes">
+            <p>There will also be a whole lot of Bacon in this talk, in different shapes and forms.</p>
+          </aside>
         </section>
 
         <section class="about-me">
@@ -65,18 +75,27 @@
           <p><i class="fa fa-github"></i> <a href="https://github.com/mikaelbr">@mikaelbr</a></p>
           <p><i class="fa fa-twitter"></i> <a href="http://twitter.com/mikaelbrevik">@mikaelbrevik</a></p>
           <p>Uses Google a lot</p>
+
+          <aside class="notes">
+            <p>First, let's meet me. I'm a consultant at BEKK in Trondheim here in Norway, and I've been working there since juni last year.</p>
+            <p>I google a lot. That's why I like to think I've haven't lost an argument since the 2007 when the smartphone got popular.</p>
+          </aside>
         </section>
 
         <section data-background="img/bacon.png" data-background-transition="slide">
           <h1>I Love Bacon<em>*</em></h1>
 
           <p class="foot-note"><em>*</em>Both the meat and the functional reactive library</p>
+
+          <aside class="notes">
+            <p>Yeah. I love bacon. It's great. It's both fun and good to eat.</p>
+          </aside>
         </section>
 
         <section class="big-me" data-background-transition="zoom" data-background="img/mikaelbrevik.jpeg">
 
           <aside class="notes">
-            <p>This is my first time at NDC, so let's get to know eachother some. Or at least, you get to know me and my internals so to speak.</p>
+            <p>This is my first time at NDC, so let's get to know each other some. This is going to get somewhat personal right now.</p>
           </aside>
         </section>
 
@@ -85,8 +104,9 @@
           <h1><span class="heartrate-initial">N/A</span><small>bpm</small></h1>
 
           <aside class="notes">
-            <p>As you probably can tell, all that Bacon isn't good for me. I must admit, me being horrendously nervous, might affect my heart rate as well.</p>
+            <p>As you probably can tell, all that Bacon isn't good for me. I must admit, me being terrably nervous, might affect my heart rate as well.</p>
             <p>Don't worry. I'm a professional. But, if my heart rate peaks at 180, it might be time to call an ambulance.</p>
+            <p>I once visited a doctor regaring my heart rate. He said I had the heart of a well trained athlete, but I didn't look like one.</p>
             <p>Later in this talk we will see how functional reactive programming can work by hacking on my heart rate.</p>
           </aside>
         </section>
@@ -135,6 +155,7 @@
             <p class="fragment">It is <span class="underline">declarative</span>, <span class="underline">stateless</span>, <span class="underline">side-effect free</span>, and <span class="underline">immutable</span>.</p>
 
             <aside class="notes">
+              <p>First class higher order functions are functions that can return functions and take functions as arguments. We can treat functions as values and expressions.</p>
             </aside>
           </section>
 
@@ -143,7 +164,7 @@
             <p class="fragment">Describe what we want, not how we want it.</p>
 
             <aside class="notes">
-              <p>Write less. Abstract more. Trust the compiler.</p>
+              <p>Write less. Abstract more. Trust the compiler. If I write less code, less errors will occur.</p>
               <p>The antonym would be imperative programming, where we detail orient everything. If's and else's, for loops and so on.</p>
             </aside>
           </section>
@@ -234,6 +255,8 @@
           <p>Data <span class="underline">propagates through nodes</span> to keep a system updated</p>
 
           <aside class="notes">
+            <p>Reactive programming is often called data flow programming and data flow management.</p>
+            <p>If I change something in a part of my system, the change will update all of it's dependants and reflect these changes.</p>
           </aside>
         </section>
 
@@ -309,6 +332,13 @@
         </section>
 
         <section data-background="#a3354c" data-background-transition="slide">
+          <h3>FRP allows us to combine the power from both the <span class="stylish-text">functional</span> and the <span class="stylish-text">reactive</span> paradigms.</h3>
+
+          <aside class="notes">
+          </aside>
+        </section>
+
+        <section data-background="#a3354c" data-background-transition="slide">
           <h3>Started with <span class="stylish-text">Conal Elliott</span> and <span class="stylish-text">Paul Hudak</span> in <span class="underline">1997</span></h3>
           <p>Started with a system called
             <span class="bold">F</span>unctional
@@ -321,20 +351,13 @@
         </section>
 
         <section data-background="#a3354c" data-background-transition="slide">
-          <h3>FRP allows us to combine the power from both the <span class="stylish-text">functional</span> and the <span class="stylish-text">reactive</span> paradigms.</h3>
-
-          <aside class="notes">
-          </aside>
-        </section>
-
-
-        <section data-background="#a3354c" data-background-transition="slide">
           <h2>Operate with two primary abstractions</h2>
           <ol>
               <li class="fragment"><h3 class="stylish-text">Behaviours</h3></li>
               <li class="fragment"><h3 class="stylish-text">Events</h3></li>
           </ol>
           <aside class="notes">
+            <p>In classic FRP (like with FRAN and after some revisions of FRAN) we have two primary abstractions.</p>
           </aside>
         </section>
 
@@ -344,7 +367,7 @@
 
           <aside class="notes">
             <p>We see the semantics of behaviours; function of time gives value.</p>
-            <p>We see it is a continous values. Like height, the amount of water in a can or the time.</p>
+            <p>We can see it is a continous value. Like height, the amount of water in a can or the time.</p>
           </aside>
         </section>
 
@@ -358,7 +381,7 @@
 
             <p>Examples of discrete values: the number of people in this room.</p>
 
-            <p>Simple difference between continous and discrete: You can measure continues values and discrete values are counter.</p>
+            <p>Simple difference between continous and discrete: You can measure continues values, but discrete values are counted.</p>
           </aside>
         </section>
 
@@ -442,7 +465,8 @@
 <pre class="fragment" data-fragment-index="1"><code class="javascript">function inputAsBehaviour(id) {</code></pre>
           <pre>
 <code class="javascript">  var $el = $(id);
-  var behaviour = Bacon.asEventStream($el, "change")
+  var behaviour =
+    Bacon.asEventStream($el, "change")
           .map(".currentTarget.value")
           .toProperty($el.val())
           .map(Number);
@@ -456,14 +480,18 @@
             <p>Fragment 1: But we're not interested in the jQuery event object returned, but we want to select the value from that element.</p>
             <p>Fragment 1: And we want to have them as numbers.</p>
             <p>Fragment 1: In addition we convert the events into a behaviour with the default value of the initial value of the element.</p>
-            <p>Fragment 1: As we remember, behaviour are continous values. This result in a behaviour with a value of the value of the element defined by id.</p>
-            <p>Fragment 1: Easier explained: We now have a behavoir of a number in an input field.</p>
+            <p>Fragment 1: As we remember, events are discrete values, but what we really want is a continous values. That means we want to have a behaviour. We make one by calling toProperty. The default value will be the value of the input field..</p>
+            <p>Fragment 1: Easier explained: We now have a behavoir of a number in an input field given by id.</p>
             <hr />
             <p>Fragment 2: We can wrap this in a function to be able to create more behaviours from inputs.</p>
           </aside>
         </section>
 
         <section data-background="img/kevin_zoom.gif" data-background-transition="slide">
+          <aside class="notes">
+            <p>What is this sorcery?</p>
+            <p>(This is Kevin Bacon btw)</p>
+          </aside>
         </section>
 
         <section>
@@ -481,6 +509,7 @@ $c.combine($d, _add)
           </div>
 
           <aside class="notes">
+            <p>We're almost done with the implementation. We just need to sow it all together.</p>
             <p>Fragment 1: We can use the function we just created to make reactive data from the nodes on the far left in our graph (call them A and B).</p>
             <p>Fragment 1: Now we have two behaviours, one for node A and one for node B.</p>
             <p>Fragment 2: We also create a node D, which works the same as A and B.</p>
@@ -510,11 +539,6 @@ $c.combine($d, _add)
         </section>
 
         <section>
-          <h3>In Bacon.js we call a <span class="underline">Behaviour</span> a <span class="stylish-text">Property</span></h3>
-          <h3>and <span class="underline">Events</span> are called <span class="stylish-text">EventStreams</span></h3>
-        </section>
-
-        <section>
           <h3>The semantics of Bacon.js come from
             <span class="underline">classic FRP</span>, where we have both
             <span class="stylish-text">behaviours</span> and <span class="stylish-text">events</span></h3>
@@ -523,6 +547,11 @@ $c.combine($d, _add)
             <p>This is as apposed to for example Reactive Extensions, where we only have the concept of observables.</p>
             <p>Reactive Extensions is probably more known, and has implementations in many languages like C#, Javascript and Java.</p>
           </aside>
+        </section>
+
+        <section>
+          <h3>In Bacon.js we call a <span class="underline">Behaviour</span> a <span class="stylish-text">Property</span></h3>
+          <h3>and <span class="underline">Events</span> are called <span class="stylish-text">EventStreams</span></h3>
         </section>
 
         <section>
@@ -581,6 +610,18 @@ $c.combine($d, _add)
           <h2>So… <span class="stylish-text">When</span> and <span class="stylish-text">Where</span>?</h2>
           <aside class="notes">
             <p>When could this be used? Never? Only on small applications isolated from the world?</p>
+          </aside>
+        </section>
+
+
+        <section data-background="#1B1B1B" data-background-transition="slide">
+          <h2>BEKK Technology Radar</h2>
+          <img src="img/radar_nonretina.png" alt="BEKK Technology Radar" />
+          <p><em>*</em> See more at <a href="http://open.bekk.no/bekk-teknologiradar-mai-2014">open.bekk.no/bekk-teknologiradar-mai-2014</a></p>
+          <aside class="notes">
+            <p>BEKK has published our view on the current state of technology in our Technology Radar.</p>
+            <p>Here, marked in red, is where Functional Reactive Programming is, marked as consider.</p>
+            <p>You can see all assesments at radar.bekk.no.</p>
           </aside>
         </section>
 
