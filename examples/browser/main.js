@@ -5,6 +5,8 @@ var comp = require('./components/');
 var chart = require('./lib/charts');
 var sound = require('./lib/sound');
 
+var $textBpm = $(".first h2 span");
+
 var bpmChart = chart.bpm();
 var bpm = require('./datasource')();
 
