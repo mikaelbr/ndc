@@ -551,6 +551,11 @@ $c.combine($d, _add)
   .log("Value: ");
 // => Value: NDC
 // (after 300 ms)</code></pre></div>
+          <aside class="notes">
+            <p>Here we see another example. Sequentially generates an Eventstream iterating over values every N milliseconds. In this example we see it changes value every 100 ms.</p>
+            <p>We convert the ints to characters and then transform them to upper cases.</p>
+            <p>Fold works exactly like reduce does. The result will be a string with "NDC".</p>
+          </aside>
         </section>
 
         <section>
@@ -559,6 +564,11 @@ $c.combine($d, _add)
           <pre><code class="javascript">Bacon.fromEventTarget(el, "change")
 .map(".currentTarget.checked")
 .toProperty(el.checked);</code></pre></div>
+          <aside class="notes">
+            <p>Another example, a bit less contrived maybe.</p>
+            <p>The result of running this would be a behaviour (or property as called in Bacon.js) representing a checkox.</p>
+            <p>The value would be true if the checkbox is checked and false otherwise. We'll see how we can use this for more exiting things later.</p>
+          </aside>
         </section>
 
         <section data-background="img/kevin_cool.jpg" data-background-transition="slide">
@@ -569,11 +579,18 @@ $c.combine($d, _add)
 
         <section data-background="rgba( 22, 152, 213, 0.7 )" data-background-transition="slide">
           <h2>So… <span class="stylish-text">When</span> and <span class="stylish-text">Where</span>?</h2>
+          <aside class="notes">
+            <p>When could this be used? Never? Only on small applications isolated from the world?</p>
+          </aside>
         </section>
 
         <section data-background="rgba( 22, 152, 213, 0.7 )" data-background-transition="slide">
           <h2>Can be <span class="underline">easily combined</span> with frameworks or libraries.</h2>
           <p>Can use as a part of an application</p>
+          <aside class="notes">
+            <p>We can use FRP on a part of a application that requires a lot of handling of different input and outputs and possibly async code.</p>
+            <p>There is no reason to not use it even though you use a framework of some sort.</p>
+          </aside>
         </section>
 
         <section data-background="rgba( 22, 152, 213, 0.7 )" data-background-transition="slide">
@@ -585,6 +602,11 @@ var labelStream =
   textStream.map(reverseText);
 </code></pre>
           </div>
+
+          <aside class="notes">
+            <p>Here is an example using Bacon with React. A bus here is just a manual EventStream that we can push values to.</p>
+            <p>We create another EventStream that is a transform of the original one, where we reverse the text given as input.</p>
+          </aside>
         </section>
 
         <section data-background="rgba( 22, 152, 213, 0.7 )" data-background-transition="slide">
@@ -599,6 +621,10 @@ React.renderComponent(React.DOM.div(null,
 textStream.push("Hello World!");
 </code></pre></div>
 <p><small><em>*</em> See full example by Josh Bassett <a href="http://joshbassett.info/2014/reactive-uis-with-react-and-bacon/">http://joshbassett.info/</a></small></p>
+          <aside class="notes">
+            <p>We send in both EventStreams to the React component.</p>
+            <p>Inside the component we need to trigger setState when the value changes on the EventStreams.</p>
+          </aside>
         </section>
 
         <section data-background="rgba( 22, 152, 213, 0.7 )" data-background-transition="slide">
@@ -611,6 +637,10 @@ var newTodo = this.$('#new-todo')
 
 newTodo.onValue(this.resetForm):
 </code></pre></div>
+          <aside class="notes">
+            <p>Here is setup for an example using backbone.</p>
+            <p>This could typically be in a initialize method of a view..</p>
+          </aside>
         </section>
 
         <section data-background="rgba( 22, 152, 213, 0.7 )" data-background-transition="slide">
@@ -621,10 +651,16 @@ Bacon.combineTemplate({
   title: titleProperty,
   done: checkBoxProperty
 })
-.sampleBy(newTodo)
+.sampledBy(newTodo)
 // Add to collection
 .onValue(this.collection.create);
 </code></pre></div>
+          <aside class="notes">
+            <p>Still in the initialize method (or probably refactored as it's own method), we could do something like this.</p>
+            <p>Combine template will generate an object literal with values from behaviour and events.</p>
+            <p>The resulting EventStream after running sampledBy will be an combination of the titleProperty and checkBoxProperty as a object literal with values when the newTodo button is clicked.</p>
+            <p>When we have a value (aka. when newTodo is triggered), we create a new model in a collection.</p>
+          </aside>
         </section>
 
         <section data-background="rgba( 22, 152, 213, 0.7 )" data-background-transition="slide">
