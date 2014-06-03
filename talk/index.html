@@ -121,7 +121,7 @@
 
           <aside class="notes">
             <p>There are some good talks here covering Functional Programming, and most of them probably do a better job explaining it than me, but let's do a short recap.</p>
-            <p>Lambda calculus: Operating with name less mathematical expressions. Or we will call them anonymous functions. Often heavy use of recursion</p>
+            <p>Lambda calculus: Operating with name-less mathematical expressions. Or we will call them anonymous functions. Often heavy use of recursion</p>
           </aside>
         </section>
 
@@ -167,7 +167,8 @@
             </div>
 
             <aside class="notes">
-              <p></p>
+              <p>For instance, if I iterate over a list, I will return a new list with the transformed values, not the original list with changed values.</p>
+              <p>We will see examples of this later.</p>
             </aside>
           </section>
 
@@ -176,6 +177,9 @@
             <h3><span class="underline">Highly reusable</span> and testable</h3>
 
             <aside class="notes">
+              <p>As we write small fragments of code, they will be reusable in different settings. And if values are immutable
+              we know we can re-use values in other contexts later in a system.</p>
+              <p>Easily testable with unit tests as we have the concept of purity in the functions.</p>
             </aside>
           </section>
 
@@ -183,17 +187,18 @@
             <h3>Achieved by using functors and combinators</h3>
 
             <aside class="notes">
-              <p>Information about functors and combinators</p>
+            <p>Functors transform one category into another category. For example with the use of the combinator map (as we'll soon see).</p>
+            <p>Combinators: Higher order functions that allows us to piece together logic. Map, reduce, filter, are all combinators.</p>
             </aside>
           </section>
 
           <section>
-<pre><code class="javascript">[1, 2, 3].map(i => i * 2;);
+<pre><code class="javascript">[1, 2, 3].map(i => i * 2);
 //= [2, 4, 6]
 </code></pre>
 
             <aside class="notes">
-              <p>Information about functors and combinators</p>
+              <p>Here we see we iterate over a sequence 1, 2, 3 and transform it using the combinator map to a new sequence consisting of 2, 4, 6.</p>
             </aside>
           </section>
           <section>
@@ -205,7 +210,9 @@
             </div>
 
             <aside class="notes">
-              <p>Information about functors and combinators</p>
+              <p>This is another easy combinator, reduce. Reduce is here a reduction. For each iteration of the sequence we get the result of the previous execution and the current item in the sequence. We can use reduce to derive for instance map.</p>
+              <p>The result of the code we see here will be the sum of the given sequence.</p>
+              <p>We have other building blocks as well, like filter, combine, foldRight etc. We will see other examples during a demo.</p>
             </aside>
           </section>
 
@@ -213,6 +220,7 @@
           <h2 class="stylish-text">Reactive Programming</h2>
 
           <aside class="notes">
+            <p>Let us move on to reactive programming.</p>
           </aside>
         </section>
 
@@ -233,7 +241,7 @@
           <h2>Classic analogy: Spreadsheets</h2>
 
           <aside class="notes">
-            <p>The most used and very explanatory analogy would be spreadsheets.</p>
+            <p>The most used and very easy-to-understand analogy would be spreadsheets.</p>
             <p>If you have two cells, and a cell with the sum of those, the sum-cell will automaticly update if you change one of the source-cells.</p>
           </aside>
         </section>
@@ -243,7 +251,7 @@
           <div class="dataflow-example">
             <input type="number" id="a" value="3" class="node node-a"/>
             <input type="number" id="b" value="2" class="node node-b"/>
-            <input type="number" id="c" class="node node-c"/>
+            <input type="number" id="c" class="node node-c" disabled=""/>
             <input type="number" id="d" value="2" class="node node-d"/>
             <input type="text" id="sum" value="0" disabled="" class="node-result"/>
           </div>
@@ -281,7 +289,7 @@
           <p>Like the <span class="underline">data binding</span> of Angular.js, Ember.js and Knockout</p>
 
           <aside class="notes">
-            <p></p>
+            <p>In many popular frameworks we bind data and if the model or data is updated the UI or the rest of the system is automaticly updated to reflect these changes.</p>
           </aside>
         </section>
 
@@ -295,22 +303,25 @@
           <h2 class="stylish-text">Functional Reactive Programming</h2 >
 
           <aside class="notes">
+            <p>Let's do a short introduction to what Functional Reactive Programming really is.</p>
+            <p>We'll call Functional Reactive Programming FRP for short.</p>
           </aside>
         </section>
 
         <section data-background="#a3354c" data-background-transition="slide">
-          <h3>Started with <span class="stylish-text">Coal Elliot</span> and <span class="stylish-text">Paul Hydak</span> in <span class="underline">1997</span></h3>
+          <h3>Started with <span class="stylish-text">Conal Elliott</span> and <span class="stylish-text">Paul Hudak</span> in <span class="underline">1997</span></h3>
           <p>Started with a system called
             <span class="bold">F</span>unctional
             <span class="bold">R</span>eactive
             <span class="bold">AN</span>imations, or <span class="underline">FRAN</span> for short.</p>
 
           <aside class="notes">
+            <p>FRAN was a collection of reactive data types and functions for composing rich UI and animations.</p>
           </aside>
         </section>
 
         <section data-background="#a3354c" data-background-transition="slide">
-          <h3>Allows us to combine the power from both the <span class="stylish-text">functional</span> and the <span class="stylish-text">reactive</span> paradigms.</h3>
+          <h3>FRP allows us to combine the power from both the <span class="stylish-text">functional</span> and the <span class="stylish-text">reactive</span> paradigms.</h3>
 
           <aside class="notes">
           </aside>
@@ -332,6 +343,8 @@
           <p>Semantics: <code>f(t) -> v</code></p>
 
           <aside class="notes">
+            <p>We see the semantics of behaviours; function of time gives value.</p>
+            <p>We see it is a continous values. Like height, the amount of water in a can or the time.</p>
           </aside>
         </section>
 
@@ -340,6 +353,12 @@
           <p>Semantics: <code>[(t, v)]</code></p>
 
           <aside class="notes">
+            <p>With the semantics tuple of time and value, we see events are discrete.</p>
+            <p>Discrete values, as we know are values are distinct and separate and can only take particular values</p>
+
+            <p>Examples of discrete values: the number of people in this room.</p>
+
+            <p>Simple difference between continous and discrete: You can measure continues values and discrete values are counter.</p>
           </aside>
         </section>
 
@@ -348,6 +367,7 @@
           <p>This allows make use of the power of functors and combinators.</p>
 
           <aside class="notes">
+            <p>Like the combinators we saw previously; map and reduce.</p>
           </aside>
         </section>
 
@@ -363,7 +383,7 @@
           <h2>Why FRP? <small>(2/2)</small></h2>
           <ol>
             <li>Reactive data types abstracting state</li>
-            <li>Limit side-effects in the GUI</li>
+            <li>Limit side-effects in the UI</li>
             <li>Is really good for handling UI and multiple inputs/outputs</li>
           </ol>
 
@@ -383,7 +403,7 @@
           <div class="dataflow-example">
             <input type="number" id="a2" value="3" class="node node-a"/>
             <input type="number" id="b2" value="2" class="node node-b"/>
-            <input type="number" id="c2" class="node node-c"/>
+            <input type="number" id="c2" disabled="" class="node node-c"/>
             <input type="number" id="d2" value="2" class="node node-d"/>
             <input type="text" id="sum2" value="0" disabled="" class="node-result"/>
           </div>
@@ -412,7 +432,7 @@
         </section>
 
         <section>
-          <h3>A lot of <span class="underline">spaghetti</span> code, right?</h3>
+          <h3>A lot of <span class="underline">spaghetti code</span>, right?</h3>
           <h2 class="stylish-text fragment">Nope</h2>
           <p class="fragment">Let's see some code</p>
         </section>
@@ -422,7 +442,7 @@
 <pre class="fragment" data-fragment-index="1"><code class="javascript">function inputAsBehaviour(id) {</code></pre>
           <pre>
 <code class="javascript">  var $el = $(id);
-  var behaviour = $el.asEventStream("change")
+  var behaviour = Bacon.asEventStream($el, "change")
           .map(".currentTarget.value")
           .toProperty($el.val())
           .map(Number);
@@ -430,6 +450,17 @@
 <pre class="fragment" data-fragment-index="1"><code class="javascript">  return behaviour;
 }</code></pre>
           </div>
+
+          <aside class="notes">
+            <p>Fragment 1: Let's say we have this jQuery element, and we want a stream of events everytime that element changes.</p>
+            <p>Fragment 1: But we're not interested in the jQuery event object returned, but we want to select the value from that element.</p>
+            <p>Fragment 1: And we want to have them as numbers.</p>
+            <p>Fragment 1: In addition we convert the events into a behaviour with the default value of the initial value of the element.</p>
+            <p>Fragment 1: As we remember, behaviour are continous values. This result in a behaviour with a value of the value of the element defined by id.</p>
+            <p>Fragment 1: Easier explained: We now have a behavoir of a number in an input field.</p>
+            <hr />
+            <p>Fragment 2: We can wrap this in a function to be able to create more behaviours from inputs.</p>
+          </aside>
         </section>
 
         <section data-background="img/kevin_zoom.gif" data-background-transition="slide">
@@ -448,6 +479,18 @@ $c.combine($d, _add)
 .assign($("#sum"), "val");
 </code></pre>
           </div>
+
+          <aside class="notes">
+            <p>Fragment 1: We can use the function we just created to make reactive data from the nodes on the far left in our graph (call them A and B).</p>
+            <p>Fragment 1: Now we have two behaviours, one for node A and one for node B.</p>
+            <p>Fragment 2: We also create a node D, which works the same as A and B.</p>
+            <p>Fragment 2: More interessting we see that we can combine these two behaviours, using the combinator combine. We take the values both A and B and subtract them.</p>
+            <p>Fragment 2: The result is a new behaviour where the value is the difference between A and B.</p>
+            <hr />
+            <p>Fragment 3: We can use that value and show it in the UI by assigning it to a DOM element.</p>
+            <p>Fragment 3: And wee see here, the C node is immutable, as we can use it again and combine with D and add the nodes.</p>
+            <p>Fragment 3: The new behaviour will be the addition of C and D. We assign the result to the UI.</p>
+          </aside>
         </section>
 
         <section data-background="img/kevin_yeah.jpg" data-background-transition="slide">
@@ -461,7 +504,7 @@ $c.combine($d, _add)
           <h2 class="black bacon-title"><span class="stylish-text">Bacon.js</span></h2>
 
           <aside class="notes">
-            <p>For those of you not knowing who this is; It's Francis Bacon. A known English philosopher, scientist and writer.</p>
+            <p>For those of you not knowing who this is (I didn't); It's Francis Bacon. A known English philosopher, scientist and writer.</p>
             <p>Often refered to as the creator of empiricism.</p>
           </aside>
         </section>
@@ -478,6 +521,7 @@ $c.combine($d, _add)
 
           <aside class="notes">
             <p>This is as apposed to for example Reactive Extensions, where we only have the concept of observables.</p>
+            <p>Reactive Extensions is probably more known, and has implementations in many languages like C#, Javascript and Java.</p>
           </aside>
         </section>
 
@@ -489,6 +533,12 @@ $c.combine($d, _add)
             <li><code>fromCallback</code></li>
             <li>... and more</li>
           </ul>
+          <aside class="notes">
+            <p>We've all ready seen fromEventTarget. It takes an object that emits event as first argument and the event as the second. The object can be something like a DOM object, EventEmitter API from Node.JS, a WebSocket and more.</p>
+            <p>fromPromise takes a promise, either a A* (A STAR) complient promise or the jQuery implementation. For instance a AJAX request using jQuery</p>
+            <p>fromCallback is just as it looks. Creates an eventstream from a callback.</p>
+            <p>We can also see that we can handle asyncronous code very easy using these reactive data types.</p>
+          </aside>
         </section>
 
         <section>
